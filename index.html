@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberGraphix ⚡ Impressão & Encadernação</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root{
+  --bg:#050810;--bg2:#080d1a;--bg3:#0c1220;
+  --cyan:#00f5ff;--mag:#ff00aa;--yel:#ffea00;--purp:#9b00ff;--grn:#00ff88;
+  --w:#e8f4ff;--dim:#4a6080;--dim2:#2a3850;
+  --gb:rgba(0,245,255,.04);--gm:rgba(255,0,170,.05);
+  --gc:rgba(0,255,136,.04);
+  --bc:rgba(0,245,255,.18);--bm:rgba(255,0,170,.22);--bg-grn:rgba(0,255,136,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:9997;}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,245,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,255,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(5,8,16,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,245,255,.1);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'Orbitron',monospace;font-size:.88rem;font-weight:900;background:linear-gradient(90deg,var(--cyan),var(--mag));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.06em;}
+.nav-links{display:flex;gap:6px;align-items:center;}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--dim);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;padding:6px 10px;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-admin-btn{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--mag);border:1px solid rgba(255,0,170,.35);padding:5px 12px;cursor:pointer;background:transparent;letter-spacing:.1em;transition:all .2s;}
+.nav-admin-btn:hover{background:rgba(255,0,170,.08);border-color:var(--mag);}
+@media(max-width:580px){.nav-links a{display:none;}.nav-admin-btn{display:flex;}}
+
+/* ── HERO ── */
+.hero{min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px 52px;position:relative;z-index:1;text-align:center;}
+.hero-glow{position:absolute;width:720px;height:720px;background:radial-gradient(circle,rgba(0,245,255,.08) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-glow2{position:absolute;width:380px;height:380px;background:radial-gradient(circle,rgba(155,0,255,.07) 0%,transparent 65%);top:15%;right:8%;pointer-events:none;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.floating-icons{display:flex;gap:14px;margin-bottom:22px;animation:float 5s ease-in-out infinite;}
+.f-icon{background:linear-gradient(135deg,rgba(0,245,255,.07),rgba(155,0,255,.07));border:1px solid var(--bc);padding:16px 18px;font-size:1.8rem;backdrop-filter:blur(4px);}
+.f-icon:nth-child(1){transform:rotate(-5deg);}
+.f-icon:nth-child(2){transform:translateY(-10px) scale(1.08);}
+.f-icon:nth-child(3){transform:rotate(5deg);}
+.brand-tag{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--cyan);letter-spacing:.3em;text-transform:uppercase;margin-bottom:12px;opacity:.75;animation:fadeUp .5s ease both;}
+.logo{font-family:'Orbitron',monospace;font-size:clamp(2.2rem,8vw,5rem);font-weight:900;line-height:1;letter-spacing:.04em;background:linear-gradient(135deg,var(--cyan) 0%,#a000ff 50%,var(--mag) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 22px rgba(0,245,255,.38));animation:fadeUp .6s ease .1s both;}
+.logo-sub{font-family:'Orbitron',monospace;font-size:clamp(.85rem,2.5vw,1.25rem);font-weight:400;color:var(--mag);letter-spacing:.4em;text-shadow:0 0 18px rgba(255,0,170,.5);margin-bottom:18px;animation:fadeUp .6s ease .2s both;}
+.hero-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px;animation:fadeUp .6s ease .25s both;}
+.hbadge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.08em;}
+.hbadge.c{background:rgba(0,245,255,.06);border:1px solid rgba(0,245,255,.2);color:var(--cyan);}
+.hbadge.m{background:rgba(255,0,170,.06);border:1px solid rgba(255,0,170,.2);color:var(--mag);}
+.hbadge.g{background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.2);color:var(--grn);}
+.hero-desc{max-width:480px;font-size:.9rem;color:rgba(232,244,255,.6);line-height:1.65;margin-bottom:26px;font-weight:300;animation:fadeUp .6s ease .3s both;}
+.btn-hero{font-family:'Orbitron',monospace;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--bg);background:linear-gradient(90deg,var(--cyan),var(--purp));border:none;padding:15px 42px;cursor:pointer;clip-path:polygon(14px 0%,100% 0%,calc(100% - 14px) 100%,0% 100%);transition:all .22s;box-shadow:0 0 30px rgba(0,245,255,.3);animation:fadeUp .6s ease .38s both;}
+.btn-hero:hover{box-shadow:0 0 56px rgba(0,245,255,.6),0 0 90px rgba(155,0,255,.25);transform:translateY(-3px);}
+
+/* ── SECTION BASE ── */
+section{padding:60px 20px;position:relative;z-index:1;}
+.container{max-width:1000px;margin:0 auto;}
+.sec-eye{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--cyan);letter-spacing:.3em;margin-bottom:5px;opacity:.65;text-transform:uppercase;}
+.sec-title{font-family:'Orbitron',monospace;font-size:clamp(1.25rem,3.2vw,1.9rem);font-weight:700;margin-bottom:4px;background:linear-gradient(90deg,var(--w),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.divider{display:flex;align-items:center;gap:12px;margin:14px 0 32px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+.divider span{font-family:'Share Tech Mono',monospace;font-size:.64rem;color:var(--cyan);white-space:nowrap;opacity:.65;}
+
+/* ── TABELAS DE PREÇO ── */
+#precos{background:var(--bg2);}
+.tables-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px;}
+@media(max-width:680px){.tables-wrap{grid-template-columns:1fr;}}
+.ptable-card{background:var(--gb);border:1px solid var(--bc);padding:22px 20px;position:relative;overflow:hidden;}
+.ptable-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--cyan),var(--purp));}
+.ptable-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--cyan),transparent);}
+.ptable-card.mag::before{background:linear-gradient(to bottom,var(--mag),var(--purp));}
+.ptable-card.mag::after{background:linear-gradient(90deg,var(--mag),transparent);}
+.ptable-icon{font-size:1.6rem;margin-bottom:8px;}
+.ptable-name{font-family:'Orbitron',monospace;font-size:.85rem;font-weight:700;color:var(--w);margin-bottom:12px;letter-spacing:.05em;}
+.ptable{width:100%;border-collapse:collapse;font-family:'Share Tech Mono',monospace;font-size:.72rem;}
+.ptable th{color:var(--cyan);padding:5px 7px;border-bottom:1px solid var(--bc);text-align:left;letter-spacing:.07em;font-size:.63rem;text-transform:uppercase;}
+.ptable.mag th{color:var(--mag);}
+.ptable td{color:rgba(232,244,255,.75);padding:5px 7px;border-bottom:1px solid rgba(0,245,255,.05);}
+.ptable tr:last-child td{border-bottom:none;}
+.ptable tr:hover td{background:rgba(0,245,255,.04);}
+.ptag{color:var(--grn);font-weight:700;}
+.ptag-mag{color:var(--mag);font-weight:700;}
+.enc-note{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:rgba(255,234,0,.75);margin-top:12px;padding:8px 10px;background:rgba(255,234,0,.05);border-left:2px solid rgba(255,234,0,.3);}
+
+/* ── CALCULADORA ── */
+#calculadora{background:var(--bg);}
+.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:740px){.calc-wrap{grid-template-columns:1fr;}}
+
+/* bloco de módulo */
+.mod-box{background:var(--gb);border:1px solid var(--bc);padding:24px;position:relative;}
+.mod-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purp),transparent);}
+.mod-box.mag{border-color:var(--bm);}
+.mod-box.mag::before{background:linear-gradient(90deg,var(--mag),var(--purp),transparent);}
+.mod-head{font-family:'Orbitron',monospace;font-size:.8rem;font-weight:700;color:var(--cyan);margin-bottom:18px;letter-spacing:.1em;display:flex;align-items:center;gap:10px;}
+.mod-box.mag .mod-head{color:var(--mag);}
+
+/* tipo buttons */
+.tipo-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;}
+.tipo-btn{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 10px;cursor:pointer;border:1px solid var(--bc);background:transparent;color:var(--dim);transition:all .18s;text-align:center;line-height:1.4;}
+.tipo-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,245,255,.06);box-shadow:0 0 14px rgba(0,245,255,.1);}
+.tipo-btn:hover:not(.active){color:var(--w);border-color:rgba(0,245,255,.35);}
+.tipo-btn.mag.active{border-color:var(--mag);color:var(--mag);background:rgba(255,0,170,.06);box-shadow:0 0 14px rgba(255,0,170,.1);}
+.tipo-btn.mag:hover:not(.active){border-color:rgba(255,0,170,.35);}
+
+/* field */
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.field label{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;}
+.qty-row{display:flex;align-items:center;gap:8px;}
+.qty-btn{width:40px;height:40px;background:transparent;border:1px solid var(--cyan);color:var(--cyan);font-size:1.3rem;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);flex-shrink:0;}
+.qty-btn:hover{background:var(--cyan);color:var(--bg);}
+.qty-btn.mag{border-color:var(--mag);color:var(--mag);}
+.qty-btn.mag:hover{background:var(--mag);}
+.qty-in{flex:1;text-align:center;background:rgba(0,245,255,.05);border:1px solid var(--bc);color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:1.05rem;padding:8px 6px;min-width:0;}
+.qty-in:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 10px rgba(0,245,255,.2);}
+.qty-in.mag{color:var(--mag);}
+
+/* live result */
+.live-box{background:rgba(0,0,0,.3);border:1px solid rgba(0,245,255,.12);padding:14px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;}
+.live-box.mag{border-color:rgba(255,0,170,.15);}
+.lb-group{display:flex;flex-direction:column;gap:3px;}
+.lb-lbl{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;}
+.lb-val{font-family:'Orbitron',monospace;font-size:1.35rem;font-weight:900;color:var(--yel);text-shadow:0 0 18px rgba(255,234,0,.45);}
+.lb-detail{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--dim);margin-top:2px;}
+.tier-chip{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:.6rem;padding:2px 8px;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:var(--grn);margin-top:4px;letter-spacing:.06em;}
+
+/* enc toggle */
+.enc-toggle{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding:10px 14px;background:rgba(255,0,170,.04);border:1px solid rgba(255,0,170,.15);cursor:pointer;transition:all .2s;}
+.enc-toggle:hover{border-color:var(--mag);}
+.toggle-sw{width:36px;height:20px;background:var(--dim2);border-radius:10px;position:relative;transition:background .2s;flex-shrink:0;}
+.toggle-sw::after{content:'';position:absolute;width:14px;height:14px;background:var(--w);border-radius:50%;top:3px;left:3px;transition:transform .2s;}
+.toggle-sw.on{background:var(--mag);}
+.toggle-sw.on::after{transform:translateX(16px);}
+.toggle-label{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--dim);letter-spacing:.06em;}
+.toggle-label .hl{color:var(--mag);}
+
+.enc-fields{display:none;margin-bottom:14px;}
+.enc-fields.show{display:block;}
+.enc-sub{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--dim);margin-bottom:10px;padding:8px 10px;background:rgba(0,0,0,.2);border-left:2px solid rgba(255,0,170,.3);}
+.perf-toggle{display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 12px;background:rgba(255,234,0,.04);border:1px solid rgba(255,234,0,.15);cursor:pointer;}
+.perf-toggle:hover{border-color:var(--yel);}
+.perf-toggle .toggle-sw.on{background:var(--yel);}
+.perf-lbl{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--dim);}
+.perf-lbl .hl{color:var(--yel);}
+
+/* add btn */
+.btn-add{font-family:'Orbitron',monospace;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:linear-gradient(90deg,var(--cyan),var(--purp));border:none;padding:12px 28px;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all .2s;width:100%;}
+.btn-add:hover{box-shadow:0 0 28px rgba(0,245,255,.4);transform:translateY(-2px);}
+.btn-add.mag{background:linear-gradient(90deg,var(--mag),var(--purp));}
+.btn-add.mag:hover{box-shadow:0 0 28px rgba(255,0,170,.4);}
+
+/* ── RESUMO ── */
+#resumo{background:var(--bg2);}
+.sum-box{background:var(--gm);border:1px solid var(--bm);padding:28px;position:relative;margin-bottom:20px;}
+.sum-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--mag),var(--cyan),var(--mag));}
+.sum-title{font-family:'Orbitron',monospace;font-size:.88rem;font-weight:700;color:var(--mag);margin-bottom:20px;letter-spacing:.1em;text-shadow:0 0 16px rgba(255,0,170,.4);}
+.sum-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(0,245,255,.07);font-family:'Share Tech Mono',monospace;font-size:.78rem;gap:8px;}
+.sum-item-name{color:rgba(232,244,255,.75);flex:1;}
+.sum-item-val{color:var(--cyan);white-space:nowrap;}
+.sum-item-del{background:none;border:none;color:var(--dim);cursor:pointer;font-size:.9rem;transition:color .15s;padding:2px 4px;flex-shrink:0;}
+.sum-item-del:hover{color:var(--mag);}
+.sum-total{display:flex;justify-content:space-between;align-items:center;padding-top:18px;margin-top:6px;border-top:1px solid var(--bm);}
+.tot-lbl{font-family:'Orbitron',monospace;font-size:.72rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;}
+.tot-val{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--yel);text-shadow:0 0 22px rgba(255,234,0,.55);}
+.empty-msg{text-align:center;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:.8rem;padding:22px 0;letter-spacing:.05em;}
+
+.sum-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;}
+.field-nome{flex:1;min-width:200px;}
+.btn-clear{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:10px 18px;cursor:pointer;border:1px solid rgba(255,68,68,.35);background:transparent;color:rgba(255,68,68,.7);transition:all .2s;white-space:nowrap;}
+.btn-clear:hover{border-color:#ff4444;color:#ff4444;background:rgba(255,68,68,.05);}
+input[type=text],input[type=number]{background:rgba(0,0,0,.45);border:1px solid rgba(0,245,255,.13);color:var(--w);padding:10px 13px;font-family:'Share Tech Mono',monospace;font-size:.85rem;transition:all .2s;width:100%;}
+input:focus{outline:none;border-color:var(--cyan);background:rgba(0,245,255,.04);box-shadow:0 0 14px rgba(0,245,255,.12);}
+input::placeholder{color:rgba(74,96,128,.5);}
+
+/* ── WPP ── */
+.wpp-section{background:var(--bg);padding:60px 20px;text-align:center;border-top:1px solid rgba(0,245,255,.07);position:relative;z-index:1;}
+.wpp-note{font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--dim);margin-bottom:24px;letter-spacing:.04em;line-height:1.6;}
+.btn-wpp{background:linear-gradient(90deg,#00c853,#25d366);color:#fff;border:none;padding:17px 48px;font-family:'Orbitron',monospace;font-size:.8rem;font-weight:700;letter-spacing:.14em;cursor:pointer;display:inline-flex;align-items:center;gap:12px;clip-path:polygon(14px 0%,100% 0%,calc(100% - 14px) 100%,0% 100%);box-shadow:0 0 36px rgba(37,211,102,.38);transition:all .25s;text-transform:uppercase;}
+.btn-wpp:hover{box-shadow:0 0 64px rgba(37,211,102,.62);transform:translateY(-4px);}
+.btn-wpp svg{width:20px;height:20px;fill:#fff;}
+
+/* ── MODAL ADMIN ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.87);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--bg2);border:1px solid var(--bc);padding:30px;max-width:620px;width:100%;position:relative;max-height:90vh;overflow-y:auto;}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--mag));}
+.modal-title{font-family:'Orbitron',monospace;font-size:.95rem;font-weight:700;color:var(--cyan);margin-bottom:22px;letter-spacing:.1em;}
+.modal-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--dim);font-size:1.3rem;cursor:pointer;}
+.modal-close:hover{color:var(--mag);}
+.adm-sec{background:rgba(0,245,255,.02);border:1px solid var(--bc);padding:20px;margin-bottom:16px;}
+.adm-sec-title{font-family:'Orbitron',monospace;font-size:.72rem;font-weight:700;color:var(--cyan);margin-bottom:12px;letter-spacing:.1em;}
+.upload-area{border:2px dashed rgba(0,245,255,.25);padding:28px;text-align:center;cursor:pointer;transition:all .2s;background:rgba(0,245,255,.01);}
+.upload-area:hover{border-color:var(--cyan);background:rgba(0,245,255,.05);}
+.upload-icon{font-size:1.8rem;margin-bottom:6px;}
+.upload-label{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--dim);line-height:1.6;}
+.upload-label strong{color:var(--cyan);}
+.parse-ok{margin-top:12px;font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--grn);background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.2);padding:10px 12px;}
+.parse-err{margin-top:12px;font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--mag);background:rgba(255,0,170,.05);border:1px solid var(--bm);padding:10px 12px;}
+.prev-wrap{margin-top:12px;overflow-x:auto;}
+.prev-table{width:100%;border-collapse:collapse;font-family:'Share Tech Mono',monospace;font-size:.68rem;}
+.prev-table th{color:var(--cyan);padding:4px 8px;border-bottom:1px solid var(--bc);text-align:left;}
+.prev-table td{color:rgba(232,244,255,.7);padding:4px 8px;border-bottom:1px solid rgba(0,245,255,.05);}
+.btn-admin{font-family:'Orbitron',monospace;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:linear-gradient(90deg,var(--cyan),var(--purp));border:none;padding:10px 24px;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all .2s;width:100%;margin-top:14px;}
+.btn-admin:hover{box-shadow:0 0 28px rgba(0,245,255,.35);}
+.btn-danger{background:linear-gradient(90deg,#ff4444,#aa0000);}
+.adm-field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.adm-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--bg2);border:1px solid var(--mag);color:var(--mag);padding:11px 26px;font-family:'Share Tech Mono',monospace;font-size:.78rem;letter-spacing:.05em;transition:transform .3s ease;z-index:10000;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.ok{border-color:var(--grn);color:var(--grn);}
+
+/* ── SCROLL TOP ── */
+.scroll-top{position:fixed;bottom:26px;right:22px;width:40px;height:40px;background:transparent;border:1px solid var(--bc);color:var(--cyan);font-size:1.1rem;cursor:pointer;z-index:400;transition:all .2s;display:none;}
+.scroll-top.show{display:flex;align-items:center;justify-content:center;}
+.scroll-top:hover{border-color:var(--cyan);background:rgba(0,245,255,.07);}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:22px;background:var(--bg);border-top:1px solid rgba(0,245,255,.07);font-family:'Share Tech Mono',monospace;font-size:.67rem;color:var(--dim);letter-spacing:.1em;position:relative;z-index:1;}
+footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">CYBER<span style="color:var(--mag)">GRAPHIX</span></div>
+  <div class="nav-links">
+    <a href="#precos">Tabela</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#resumo">Orçamento</a>
+    <button class="nav-admin-btn" onclick="openAdmin()">⚙ ADMIN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div><div class="hero-glow2"></div>
+  <div class="floating-icons">
+    <div class="f-icon">🖨️</div>
+    <div class="f-icon">📄</div>
+    <div class="f-icon">📎</div>
+  </div>
+  <p class="brand-tag">[ orçamento online · v2.0 ]</p>
+  <div class="logo">CyberGraphix</div>
+  <div class="logo-sub">Impressão & Encadernação</div>
+  <div class="hero-badges">
+    <div class="hbadge c">🖨️ Colorida & Preto e Branco</div>
+    <div class="hbadge m">📎 Encadernação com Espiral</div>
+    <div class="hbadge g">⚡ Preço cai com a quantidade</div>
+  </div>
+  <p class="hero-desc">Monte seu orçamento de impressão com ou sem encadernação, veja o total em tempo real e envie direto pelo WhatsApp.</p>
+  <button class="btn-hero" onclick="document.getElementById('calculadora').scrollIntoView({behavior:'smooth'})">▶ CALCULAR ORÇAMENTO</button>
+</section>
+
+<!-- TABELA DE PREÇOS -->
+<section id="precos">
+  <div class="container">
+    <p class="sec-eye">// módulo 01 — tabela de preços</p>
+    <h2 class="sec-title">Tabela de Preços</h2>
+    <div class="divider"><span>◈ quanto mais você imprime, mais barato fica ◈</span></div>
+    <div class="tables-wrap">
+
+      <!-- Impressão -->
+      <div class="ptable-card">
+        <div class="ptable-icon">🖨️</div>
+        <div class="ptable-name">Impressão — por página</div>
+        <table class="ptable" id="tableImpressao">
+          <thead>
+            <tr>
+              <th>Qtd</th>
+              <th>Frente</th>
+              <th>F e V</th>
+              <th>F P&amp;B</th>
+              <th>F e V P&amp;B</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyImpressao"></tbody>
+        </table>
+      </div>
+
+      <!-- Encadernação -->
+      <div class="ptable-card mag">
+        <div class="ptable-icon">📎</div>
+        <div class="ptable-name">Encadernação — por folhas</div>
+        <table class="ptable mag" id="tableEnc">
+          <thead>
+            <tr>
+              <th>Folhas</th>
+              <th>Preço</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyEnc"></tbody>
+        </table>
+        <div class="enc-note" id="encNote" style="display:none">
+          🔩 Perfuração (até 100 folhas): <strong id="encPerfPreco">R$ 6,00</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section id="calculadora">
+  <div class="container">
+    <p class="sec-eye">// módulo 02 — calculadora</p>
+    <h2 class="sec-title">Monte seu Pedido</h2>
+    <div class="divider"><span>◈ selecione tipo, quantidade e veja o preço em tempo real ◈</span></div>
+
+    <div class="calc-wrap">
+
+      <!-- MÓDULO IMPRESSÃO -->
+      <div class="mod-box">
+        <div class="mod-head">🖨️ IMPRESSÃO</div>
+
+        <div style="margin-bottom:12px;">
+          <div class="field" style="margin-bottom:8px;"><label>tipo de impressão</label></div>
+          <div class="tipo-btns">
+            <button class="tipo-btn active" data-tipo="frente" onclick="selTipo(this)">Frente<br><span style="font-size:.6rem;opacity:.7">Colorida</span></button>
+            <button class="tipo-btn" data-tipo="fev" onclick="selTipo(this)">Frente e Verso<br><span style="font-size:.6rem;opacity:.7">Colorida</span></button>
+            <button class="tipo-btn" data-tipo="frente_black" onclick="selTipo(this)">Frente<br><span style="font-size:.6rem;opacity:.7">Preto e Branco</span></button>
+            <button class="tipo-btn" data-tipo="fev_black" onclick="selTipo(this)">Frente e Verso<br><span style="font-size:.6rem;opacity:.7">Preto e Branco</span></button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>quantidade de páginas</label>
+          <div class="qty-row">
+            <button class="qty-btn" onclick="changeQty('impQty',-1,'calcImp')">−</button>
+            <input class="qty-in" type="number" id="impQty" value="1" min="1" oninput="calcImp()">
+            <button class="qty-btn" onclick="changeQty('impQty',1,'calcImp')">+</button>
+          </div>
+        </div>
+
+        <!-- Encadernação toggle -->
+        <div class="enc-toggle" onclick="toggleEnc()" id="encToggle">
+          <div class="toggle-sw" id="encSw"></div>
+          <div class="toggle-label">Adicionar <span class="hl">encadernação</span></div>
+        </div>
+
+        <!-- Campos encadernação -->
+        <div class="enc-fields" id="encFields">
+          <div class="enc-sub">A encadernação é calculada por número de <strong style="color:var(--mag)">folhas físicas</strong>. Para frente e verso, cada 2 páginas = 1 folha.</div>
+          <div class="field">
+            <label>folhas para encadernar</label>
+            <div class="qty-row">
+              <button class="qty-btn mag" onclick="changeQty('encFolhasQty',-1,'calcImp')">−</button>
+              <input class="qty-in mag" type="number" id="encFolhasQty" value="10" min="1" oninput="calcImp()">
+              <button class="qty-btn mag" onclick="changeQty('encFolhasQty',1,'calcImp')">+</button>
+            </div>
+          </div>
+          <!-- Perfuração toggle -->
+          <div class="perf-toggle" onclick="togglePerf()" id="perfToggle">
+            <div class="toggle-sw" id="perfSw"></div>
+            <div class="perf-lbl">Incluir <span class="hl">perfuração</span> (até 100 folhas)</div>
+          </div>
+        </div>
+
+        <div class="live-box" id="impLive">
+          <div class="lb-group">
+            <div class="lb-lbl">unitário</div>
+            <div class="lb-val" id="impUnit">—</div>
+            <div class="lb-detail" id="impDetail"></div>
+          </div>
+          <div class="lb-group" style="text-align:right">
+            <div class="lb-lbl">total impressão</div>
+            <div class="lb-val" id="impTotal">—</div>
+            <div id="impTierChip"></div>
+          </div>
+        </div>
+
+        <div id="encLiveLine" style="display:none;margin-bottom:14px;background:rgba(255,0,170,.04);border:1px solid rgba(255,0,170,.15);padding:10px 14px;">
+          <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <div class="lb-group">
+              <div class="lb-lbl">encadernação</div>
+              <div style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--mag);" id="encVal">—</div>
+            </div>
+            <div class="lb-group" id="perfGrp" style="display:none">
+              <div class="lb-lbl">perfuração</div>
+              <div style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--yel);" id="perfVal">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="live-box" id="impTotalBox" style="display:none;border-color:rgba(255,234,0,.25);background:rgba(255,234,0,.03);">
+          <div class="lb-group">
+            <div class="lb-lbl" style="color:var(--yel)">TOTAL DO PEDIDO</div>
+            <div class="lb-val" id="impGrandTotal" style="font-size:1.6rem;">—</div>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:4px;">
+          <label>observação (opcional)</label>
+          <input type="text" id="impObs" placeholder="ex: A4, frente colorida, 3 cópias...">
+        </div>
+
+        <button class="btn-add" onclick="addItem('imp')">+ ADICIONAR AO ORÇAMENTO</button>
+      </div>
+
+      <!-- MÓDULO ENCADERNAÇÃO AVULSA -->
+      <div class="mod-box mag">
+        <div class="mod-head" style="color:var(--mag);">📎 ENCADERNAÇÃO AVULSA</div>
+        <p style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--dim);margin-bottom:18px;line-height:1.7;">Para encadernar documentos já impressos, sem impressão CyberGraphix.</p>
+
+        <div class="field">
+          <label>número de folhas</label>
+          <div class="qty-row">
+            <button class="qty-btn mag" onclick="changeQty('encQty',-1,'calcEnc')">−</button>
+            <input class="qty-in mag" type="number" id="encQty" value="10" min="1" oninput="calcEnc()">
+            <button class="qty-btn mag" onclick="changeQty('encQty',1,'calcEnc')">+</button>
+          </div>
+        </div>
+
+        <!-- Perfuração avulsa -->
+        <div class="perf-toggle" onclick="togglePerfAvulsa()" id="perfAvulsaToggle" style="margin-bottom:16px;">
+          <div class="toggle-sw" id="perfAvulsaSw"></div>
+          <div class="perf-lbl">Incluir <span class="hl">perfuração</span> (até 100 folhas)</div>
+        </div>
+
+        <div class="live-box mag" id="encLive">
+          <div class="lb-group">
+            <div class="lb-lbl">encadernação</div>
+            <div class="lb-val" id="encUnit">—</div>
+            <div class="lb-detail" id="encDetail"></div>
+          </div>
+          <div class="lb-group" id="perfAvulsaGrp" style="text-align:right;display:none">
+            <div class="lb-lbl">perfuração</div>
+            <div class="lb-val" id="perfAvulsaVal" style="color:var(--yel)">—</div>
+          </div>
+        </div>
+
+        <div class="live-box" id="encTotalBox" style="display:none;border-color:rgba(255,234,0,.25);background:rgba(255,234,0,.03);">
+          <div class="lb-group">
+            <div class="lb-lbl" style="color:var(--yel)">TOTAL</div>
+            <div class="lb-val" id="encGrandTotal" style="font-size:1.6rem;">—</div>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:4px;">
+          <label>observação (opcional)</label>
+          <input type="text" id="encObs" placeholder="ex: trabalho de faculdade, 1 via...">
+        </div>
+
+        <button class="btn-add mag" onclick="addItem('enc')">+ ADICIONAR AO ORÇAMENTO</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESUMO -->
+<section id="resumo">
+  <div class="container">
+    <p class="sec-eye">// módulo 03 — orçamento</p>
+    <h2 class="sec-title">Resumo do Orçamento</h2>
+    <div class="divider"><span>◈ revise e envie pelo WhatsApp ◈</span></div>
+
+    <div class="sum-box">
+      <div class="sum-title">▶ ITENS DO ORÇAMENTO</div>
+      <div id="sumItems"><p class="empty-msg">&gt; nenhum item adicionado ainda...</p></div>
+      <div id="sumTotal" style="display:none" class="sum-total">
+        <span class="tot-lbl">// total estimado</span>
+        <span class="tot-val" id="totVal">R$ 0,00</span>
+      </div>
+    </div>
+
+    <div class="sum-controls">
+      <div class="field field-nome">
+        <label>seu nome (opcional)</label>
+        <input type="text" id="clienteNome" placeholder="como você se chama?">
+      </div>
+      <button class="btn-clear" onclick="clearAll()">✕ LIMPAR TUDO</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP -->
+<div class="wpp-section">
+  <div class="container">
+    <p class="wpp-note">Orçamento pronto? Envie direto para o WhatsApp da CyberGraphix.<br>
+    <span style="color:var(--cyan);">(92) 9 9412-0494</span> — Diego</p>
+    <button class="btn-wpp" onclick="sendWpp()">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      ENVIAR ORÇAMENTO
+    </button>
+  </div>
+</div>
+
+<footer>
+  <span class="bc">CYBERGRAPHIX</span> &nbsp;◈&nbsp; impressão & encadernação &nbsp;◈&nbsp; feito com <span class="bm">♥</span> no brasil
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="toast" id="toast"></div>
+
+<!-- MODAL ADMIN -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAdmin()">✕</button>
+    <div class="modal-title">⚙ PAINEL ADMINISTRATIVO</div>
+
+    <div id="adminLoginBox">
+      <div class="adm-sec">
+        <div class="adm-sec-title">🔐 ACESSO</div>
+        <div class="adm-field">
+          <div class="adm-label">senha do painel</div>
+          <input type="password" id="adminPassIn" placeholder="senha..." onkeydown="if(event.key==='Enter')checkPass()">
+        </div>
+        <div id="adminPassErr" style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--mag);min-height:16px;margin-bottom:6px;"></div>
+        <button class="btn-admin" onclick="checkPass()">▶ ENTRAR</button>
+      </div>
+    </div>
+
+    <div id="adminPainel" style="display:none">
+
+      <div class="adm-sec">
+        <div class="adm-sec-title">📊 ATUALIZAR PLANILHA DE PREÇOS</div>
+        <p style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--dim);margin-bottom:12px;line-height:1.7;">
+          Envie a planilha <strong style="color:var(--cyan)">.xlsx</strong> — o sistema lê automaticamente a aba <strong style="color:var(--cyan)">"Dados"</strong>.<br>
+          Impressão: colunas <strong style="color:var(--cyan)">De · Unid · Frente · F e V · F Black · F e V Black</strong><br>
+          Encadernação: colunas <strong style="color:var(--mag)">De · Folhas · Preço</strong> (mesmo arquivo, lado direito)
+        </p>
+        <div class="upload-area" onclick="document.getElementById('xlsxIn').click()">
+          <div class="upload-icon">📂</div>
+          <div class="upload-label"><strong>Clique para selecionar</strong> ou arraste aqui<br>Aceito: .xlsx · .xlsm · .xls</div>
+        </div>
+        <input type="file" id="xlsxIn" accept=".xlsx,.xlsm,.xls" style="display:none" onchange="readXlsx(this.files[0])">
+        <div id="xlsxMsg" style="display:none"></div>
+        <div id="xlsxPrev" style="display:none" class="prev-wrap"></div>
+        <button class="btn-admin" id="applyXlsxBtn" style="display:none" onclick="applyXlsx()">⚡ APLICAR NOVOS PREÇOS</button>
+      </div>
+
+      <div class="adm-sec">
+        <div class="adm-sec-title">📱 CONFIGURAÇÕES</div>
+        <div class="adm-field">
+          <div class="adm-label">número WhatsApp (só números, com DDD e 55)</div>
+          <input type="text" id="wppIn" placeholder="ex: 5592994120494">
+        </div>
+        <button class="btn-admin" onclick="saveConf()">💾 SALVAR</button>
+        <button class="btn-admin btn-danger" style="margin-top:8px" onclick="resetData()">🗑️ RESETAR TODOS OS DADOS</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════
+// CONFIG — troque a senha e o número aqui se quiser
+// ══════════════════════════════════════════════════════════
+const ADMIN_PASS = 'cybergraphix2025';
+const WPP_DEFAULT = '5592994120494';
+
+// ══════════════════════════════════════════════════════════
+// DADOS HARDCODED (da planilha) — serão sobrescritos se admin
+// carregar um xlsx novo
+// ══════════════════════════════════════════════════════════
+const IMP_DEFAULT = [
+  { de:1,  ate:10,  frente:2.0, fev:2.0, frente_black:1.0, fev_black:1.0 },
+  { de:11, ate:25,  frente:1.4, fev:1.8, frente_black:0.7, fev_black:0.9 },
+  { de:26, ate:50,  frente:1.3, fev:1.6, frente_black:0.6, fev_black:0.8 },
+  { de:51, ate:100, frente:1.2, fev:1.4, frente_black:0.5, fev_black:0.7 },
+  { de:101,ate:150, frente:1.1, fev:1.2, frente_black:0.4, fev_black:0.6 },
+  { de:151,ate:null,frente:1.0, fev:1.1, frente_black:0.3, fev_black:0.5 },
+];
+const ENC_DEFAULT = [
+  { de:1,   ate:100, preco:10 },
+  { de:101, ate:150, preco:13 },
+  { de:151, ate:250, preco:16 },
+  { de:251, ate:300, preco:19 },
+  { de:301, ate:350, preco:22 },
+  { de:351, ate:400, preco:26 },
+  { de:401, ate:450, preco:30 },
+  { de:451, ate:null,preco:35 },
+];
+const PERF_DEFAULT = 6; // R$ perfuração até 100 folhas
+
+// ══════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════
+let impData   = [...IMP_DEFAULT];
+let encData   = [...ENC_DEFAULT];
+let perfPreco = PERF_DEFAULT;
+let wppNum    = WPP_DEFAULT;
+let items     = [];
+let selectedTipo = 'frente';
+let encOn    = false;
+let perfOn   = false;
+let perfAvOn = false;
+let adminLogged = false;
+let pendingData = null;
+
+// ══════════════════════════════════════════════════════════
+// STORAGE
+// ══════════════════════════════════════════════════════════
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem('cg_ie') || '{}');
+    if (d.imp)   impData   = d.imp;
+    if (d.enc)   encData   = d.enc;
+    if (d.perf)  perfPreco = d.perf;
+    if (d.wpp)   wppNum    = d.wpp;
+  } catch(e){}
+}
+function save() {
+  try { localStorage.setItem('cg_ie', JSON.stringify({ imp:impData, enc:encData, perf:perfPreco, wpp:wppNum })); } catch(e){}
+}
+
+// ══════════════════════════════════════════════════════════
+// RENDER PRICE TABLES
+// ══════════════════════════════════════════════════════════
+function renderTables() {
+  // Impressão
+  const tbody = document.getElementById('tbodyImpressao');
+  tbody.innerHTML = impData.map(r => `<tr>
+    <td>${r.de}${r.ate ? '–'+r.ate : '+'}</td>
+    <td class="ptag">${brl(r.frente)}</td>
+    <td class="ptag">${brl(r.fev)}</td>
+    <td class="ptag">${brl(r.frente_black)}</td>
+    <td class="ptag">${brl(r.fev_black)}</td>
+  </tr>`).join('');
+
+  // Encadernação
+  const tbody2 = document.getElementById('tbodyEnc');
+  tbody2.innerHTML = encData.map(r => `<tr>
+    <td>${r.de}${r.ate ? '–'+r.ate : '+'}</td>
+    <td class="ptag-mag">${brl(r.preco)}</td>
+  </tr>`).join('');
+  document.getElementById('encNote').style.display = 'flex';
+  document.getElementById('encPerfPreco').textContent = brl(perfPreco);
+}
+
+// ══════════════════════════════════════════════════════════
+// TIPO IMPRESSÃO
+// ══════════════════════════════════════════════════════════
+function selTipo(btn) {
+  document.querySelectorAll('.tipo-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedTipo = btn.dataset.tipo;
+  calcImp();
+}
+
+// ══════════════════════════════════════════════════════════
+// ENC / PERF TOGGLES
+// ══════════════════════════════════════════════════════════
+function toggleEnc() {
+  encOn = !encOn;
+  document.getElementById('encSw').classList.toggle('on', encOn);
+  document.getElementById('encFields').classList.toggle('show', encOn);
+  document.getElementById('encLiveLine').style.display = encOn ? '' : 'none';
+  document.getElementById('impTotalBox').style.display = encOn ? '' : 'none';
+  calcImp();
+}
+function togglePerf() {
+  perfOn = !perfOn;
+  document.getElementById('perfSw').classList.toggle('on', perfOn);
+  document.getElementById('perfGrp').style.display = perfOn ? '' : 'none';
+  calcImp();
+}
+function togglePerfAvulsa() {
+  perfAvOn = !perfAvOn;
+  document.getElementById('perfAvulsaSw').classList.toggle('on', perfAvOn);
+  document.getElementById('perfAvulsaGrp').style.display = perfAvOn ? '' : 'none';
+  document.getElementById('encTotalBox').style.display = perfAvOn ? '' : 'none';
+  calcEnc();
+}
+
+// ══════════════════════════════════════════════════════════
+// CALC IMPRESSÃO
+// ══════════════════════════════════════════════════════════
+function calcImp() {
+  const qty   = Math.max(1, parseInt(document.getElementById('impQty').value) || 1);
+  const tier  = getTierImp(qty);
+  const unit  = tier ? (tier[selectedTipo] || 0) : 0;
+  const total = unit * qty;
+
+  document.getElementById('impUnit').textContent  = tier ? brl(unit) : '—';
+  document.getElementById('impTotal').textContent = tier ? brl(total) : '—';
+  document.getElementById('impDetail').textContent = tier ? `${qty} pág × ${brl(unit)}` : '';
+  document.getElementById('impTierChip').innerHTML = tier
+    ? `<span class="tier-chip">faixa ${tier.de}${tier.ate?'–'+tier.ate:'+'}</span>` : '';
+
+  // encadernação
+  if (encOn) {
+    const folhas = Math.max(1, parseInt(document.getElementById('encFolhasQty').value) || 1);
+    const eTier  = getTierEnc(folhas);
+    const ePreco = eTier ? eTier.preco : 0;
+    const pPreco = perfOn && folhas <= 100 ? perfPreco : 0;
+
+    document.getElementById('encVal').textContent  = brl(ePreco);
+    document.getElementById('perfVal').textContent = brl(pPreco);
+
+    const grand = total + ePreco + pPreco;
+    document.getElementById('impGrandTotal').textContent = brl(grand);
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// CALC ENCADERNAÇÃO AVULSA
+// ══════════════════════════════════════════════════════════
+function calcEnc() {
+  const folhas = Math.max(1, parseInt(document.getElementById('encQty').value) || 1);
+  const tier   = getTierEnc(folhas);
+  const ePreco = tier ? tier.preco : 0;
+  const pPreco = perfAvOn && folhas <= 100 ? perfPreco : 0;
+
+  document.getElementById('encUnit').textContent    = tier ? brl(ePreco) : '—';
+  document.getElementById('encDetail').textContent  = tier ? `faixa ${tier.de}${tier.ate?'–'+tier.ate:'+'}` : '';
+  document.getElementById('perfAvulsaVal').textContent = brl(pPreco);
+  document.getElementById('encGrandTotal').textContent = brl(ePreco + pPreco);
+}
+
+// ══════════════════════════════════════════════════════════
+// TIER HELPERS
+// ══════════════════════════════════════════════════════════
+function getTierImp(qty) {
+  let m = impData[0];
+  for (const t of impData) { if (qty >= t.de) m = t; }
+  return m;
+}
+function getTierEnc(folhas) {
+  let m = encData[0];
+  for (const t of encData) { if (folhas >= t.de) m = t; }
+  return m;
+}
+
+// ══════════════════════════════════════════════════════════
+// CHANGE QTY
+// ══════════════════════════════════════════════════════════
+function changeQty(id, delta, fn) {
+  const el = document.getElementById(id);
+  el.value = Math.max(1, (parseInt(el.value)||1) + delta);
+  window[fn]();
+}
+
+// ══════════════════════════════════════════════════════════
+// ADD ITEM
+// ══════════════════════════════════════════════════════════
+function addItem(mod) {
+  if (mod === 'imp') {
+    const qty   = Math.max(1, parseInt(document.getElementById('impQty').value)||1);
+    const tier  = getTierImp(qty);
+    if (!tier) { toast('⚠ Tabela não carregada!'); return; }
+    const unit  = tier[selectedTipo];
+    const total = unit * qty;
+    const obs   = document.getElementById('impObs').value.trim();
+    const tipoLabel = {
+      frente:       'Frente Colorida',
+      fev:          'Frente e Verso Colorida',
+      frente_black: 'Frente P&B',
+      fev_black:    'Frente e Verso P&B',
+    }[selectedTipo];
+
+    let desc  = `🖨️ ${tipoLabel} — ${qty} pág.`;
+    let valor = total;
+    const linhas = [];
+    linhas.push({ label:`Impressão ${tipoLabel} (${qty} pág. × ${brl(unit)})`, val: total });
+
+    if (encOn) {
+      const folhas = Math.max(1, parseInt(document.getElementById('encFolhasQty').value)||1);
+      const eTier  = getTierEnc(folhas);
+      const ePreco = eTier ? eTier.preco : 0;
+      valor += ePreco;
+      linhas.push({ label:`Encadernação (${folhas} folhas)`, val: ePreco });
+      desc += ` + encad. ${folhas}fls`;
+      if (perfOn && folhas <= 100) {
+        valor += perfPreco;
+        linhas.push({ label:`Perfuração`, val: perfPreco });
+        desc += ` + perf.`;
+      }
+    }
+    if (obs) desc += ` (${obs})`;
+    items.push({ desc, valor, linhas });
+
+  } else {
+    const folhas = Math.max(1, parseInt(document.getElementById('encQty').value)||1);
+    const tier   = getTierEnc(folhas);
+    if (!tier) { toast('⚠ Tabela não carregada!'); return; }
+    const ePreco = tier.preco;
+    const obs    = document.getElementById('encObs').value.trim();
+    let valor = ePreco;
+    const linhas = [{ label:`Encadernação (${folhas} folhas)`, val: ePreco }];
+    if (perfAvOn && folhas <= 100) {
+      valor += perfPreco;
+      linhas.push({ label:`Perfuração`, val: perfPreco });
+    }
+    let desc = `📎 Encadernação — ${folhas} folhas`;
+    if (perfAvOn && folhas <= 100) desc += ' + perf.';
+    if (obs) desc += ` (${obs})`;
+    items.push({ desc, valor, linhas });
+  }
+
+  renderSum();
+  toast('✓ ITEM ADICIONADO!', true);
+  document.getElementById('resumo').scrollIntoView({ behavior:'smooth' });
+}
+
+// ══════════════════════════════════════════════════════════
+// RENDER SUMMARY
+// ══════════════════════════════════════════════════════════
+function renderSum() {
+  const el     = document.getElementById('sumItems');
+  const totDiv = document.getElementById('sumTotal');
+  const totVal = document.getElementById('totVal');
+
+  if (!items.length) {
+    el.innerHTML = '<p class="empty-msg">&gt; nenhum item adicionado ainda...</p>';
+    totDiv.style.display = 'none';
+    return;
+  }
+
+  let grand = 0;
+  el.innerHTML = items.map((it, i) => {
+    grand += it.valor;
+    return `<div class="sum-item">
+      <div class="sum-item-name">
+        <div style="margin-bottom:3px;">${it.desc}</div>
+        ${it.linhas.map(l=>`<div style="font-size:.65rem;color:var(--dim);padding-left:8px;">▸ ${l.label}: <span style="color:var(--cyan)">${brl(l.val)}</span></div>`).join('')}
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <span class="sum-item-val">${brl(it.valor)}</span>
+        <button class="sum-item-del" onclick="removeItem(${i})">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  totDiv.style.display = 'flex';
+  totVal.textContent = brl(grand);
+}
+
+function removeItem(i) {
+  items.splice(i, 1);
+  renderSum();
+}
+function clearAll() {
+  items = [];
+  renderSum();
+  toast('Orçamento limpo!');
+}
+
+// ══════════════════════════════════════════════════════════
+// WHATSAPP
+// ══════════════════════════════════════════════════════════
+function sendWpp() {
+  if (!items.length) { toast('⚠ Seu orçamento está vazio!'); return; }
+  const nome  = document.getElementById('clienteNome').value.trim();
+  const grand = items.reduce((a,b) => a + b.valor, 0);
+
+  let msg = '🖨️ *Olá, CyberGraphix!*\n';
+  if (nome) msg += `👤 *Nome:* ${nome}\n`;
+  msg += '\n*📋 ORÇAMENTO — IMPRESSÃO & ENCADERNAÇÃO*\n';
+  msg += '─────────────────────────────\n';
+  items.forEach((it, i) => {
+    msg += `\n*${i+1}.* ${it.desc}\n`;
+    it.linhas.forEach(l => { msg += `   ▸ ${l.label}: ${brl(l.val)}\n`; });
+    msg += `   *Subtotal: ${brl(it.valor)}*\n`;
+  });
+  msg += `\n─────────────────────────────\n`;
+  msg += `💰 *TOTAL: ${brl(grand)}*\n\n`;
+  msg += 'Aguardo confirmação! 😊';
+
+  window.open(`https://wa.me/${wppNum}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// ══════════════════════════════════════════════════════════
+// ADMIN
+// ══════════════════════════════════════════════════════════
+function openAdmin() {
+  document.getElementById('adminModal').classList.add('open');
+  if (adminLogged) showPainel();
+}
+function closeAdmin() {
+  document.getElementById('adminModal').classList.remove('open');
+}
+function checkPass() {
+  if (document.getElementById('adminPassIn').value === ADMIN_PASS) {
+    adminLogged = true;
+    showPainel();
+    document.getElementById('adminPassErr').textContent = '';
+  } else {
+    document.getElementById('adminPassErr').textContent = '⚠ Senha incorreta!';
+  }
+}
+function showPainel() {
+  document.getElementById('adminLoginBox').style.display = 'none';
+  document.getElementById('adminPainel').style.display = 'block';
+  document.getElementById('wppIn').value = wppNum;
+}
+
+// ── XLSX ──
+function readXlsx(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const wb   = XLSX.read(e.target.result, { type:'binary' });
+      const wsName = wb.SheetNames.includes('Dados') ? 'Dados' : wb.SheetNames[0];
+      const ws   = wb.Sheets[wsName];
+      const rows = XLSX.utils.sheet_to_json(ws, { header:1, defval:'' });
+
+      // ── Impressão: colunas A-F ──
+      let hRow = -1;
+      for (let i = 0; i < rows.length; i++) {
+        const r = rows[i].map(c => String(c).trim().toLowerCase());
+        if (r[0] === 'de' && (r[2].includes('frente') || r[1] === 'unid')) { hRow = i; break; }
+      }
+      if (hRow === -1) throw new Error('Cabeçalho de impressão não encontrado (De / Unid / Frente ...)');
+
+      const newImp = [];
+      for (let i = hRow + 1; i < rows.length; i++) {
+        const r = rows[i];
+        const de = pnum(r[0]);
+        if (!de && de !== 0) continue;
+        newImp.push({
+          de, ate: pnum(r[1]) || null,
+          frente: pnum(r[2]), fev: pnum(r[3]),
+          frente_black: pnum(r[4]), fev_black: pnum(r[5]),
+        });
+      }
+      if (!newImp.length) throw new Error('Nenhuma linha de impressão encontrada.');
+
+      // ── Encadernação: colunas G-I (índices 7,8,9) ──
+      let hEncRow = -1;
+      for (let i = 0; i < rows.length; i++) {
+        const r = rows[i];
+        const c7 = String(r[7]||'').trim().toLowerCase();
+        const c8 = String(r[8]||'').trim().toLowerCase();
+        if (c7 === 'de' && (c8 === 'folhas' || c8 === 'unid')) { hEncRow = i; break; }
+      }
+
+      const newEnc = [];
+      let newPerf  = PERF_DEFAULT;
+      if (hEncRow !== -1) {
+        for (let i = hEncRow + 1; i < rows.length; i++) {
+          const r   = rows[i];
+          const raw = String(r[7]||'').trim().toLowerCase();
+          if (raw.includes('perf')) {
+            newPerf = pnum(r[9]) || newPerf;
+            continue;
+          }
+          const de = pnum(r[7]);
+          if (!de && de !== 0) continue;
+          newEnc.push({ de, ate: pnum(r[8]) || null, preco: pnum(r[9]) });
+        }
+      }
+
+      pendingData = { imp: newImp, enc: newEnc.length ? newEnc : encData, perf: newPerf };
+
+      // preview
+      const msgEl = document.getElementById('xlsxMsg');
+      msgEl.style.display = 'block';
+      msgEl.className = 'parse-ok';
+      msgEl.textContent = `✓ ${newImp.length} faixas de impressão · ${newEnc.length} faixas de encadernação lidas!`;
+
+      const prevEl = document.getElementById('xlsxPrev');
+      prevEl.style.display = 'block';
+      prevEl.innerHTML = `
+        <p style="font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--cyan);margin-bottom:6px;">IMPRESSÃO:</p>
+        <table class="prev-table">
+          <thead><tr><th>De</th><th>Até</th><th>Frente</th><th>F&V</th><th>F P&B</th><th>F&V P&B</th></tr></thead>
+          <tbody>${newImp.map(r=>`<tr><td>${r.de}</td><td>${r.ate||'+'}</td><td>${brl(r.frente)}</td><td>${brl(r.fev)}</td><td>${brl(r.frente_black)}</td><td>${brl(r.fev_black)}</td></tr>`).join('')}</tbody>
+        </table>
+        ${newEnc.length ? `
+        <p style="font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--mag);margin:10px 0 6px;">ENCADERNAÇÃO:</p>
+        <table class="prev-table">
+          <thead><tr><th>De</th><th>Até Folhas</th><th>Preço</th></tr></thead>
+          <tbody>${newEnc.map(r=>`<tr><td>${r.de}</td><td>${r.ate||'+'}</td><td>${brl(r.preco)}</td></tr>`).join('')}</tbody>
+        </table>
+        <p style="font-family:'Share Tech Mono',monospace;font-size:.68rem;color:rgba(255,234,0,.75);margin-top:8px;">Perfuração: ${brl(newPerf)}</p>
+        ` : ''}
+      `;
+      document.getElementById('applyXlsxBtn').style.display = 'block';
+
+    } catch(err) {
+      const msgEl = document.getElementById('xlsxMsg');
+      msgEl.style.display = 'block';
+      msgEl.className = 'parse-err';
+      msgEl.textContent = '✕ Erro: ' + err.message;
+      document.getElementById('applyXlsxBtn').style.display = 'none';
+    }
+  };
+  reader.readAsBinaryString(file);
+}
+
+function applyXlsx() {
+  if (!pendingData) return;
+  impData   = pendingData.imp;
+  encData   = pendingData.enc;
+  perfPreco = pendingData.perf;
+  save();
+  renderTables();
+  calcImp();
+  calcEnc();
+  toast('✓ PREÇOS ATUALIZADOS!', true);
+  closeAdmin();
+}
+
+function saveConf() {
+  const n = document.getElementById('wppIn').value.trim().replace(/\D/g,'');
+  if (!n) { toast('⚠ Informe o número!'); return; }
+  wppNum = n;
+  save();
+  toast('✓ CONFIGURAÇÕES SALVAS!', true);
+}
+
+function resetData() {
+  if (!confirm('Resetar para os preços padrão da planilha?')) return;
+  impData   = [...IMP_DEFAULT];
+  encData   = [...ENC_DEFAULT];
+  perfPreco = PERF_DEFAULT;
+  localStorage.removeItem('cg_ie');
+  renderTables();
+  calcImp();
+  calcEnc();
+  toast('Dados resetados!');
+}
+
+// ══════════════════════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════════════════════
+function pnum(v) {
+  if (v === null || v === undefined || v === '') return 0;
+  if (typeof v === 'number') return v;
+  return parseFloat(String(v).replace(/[R$\s]/g,'').replace(',','.')) || 0;
+}
+function brl(v) {
+  if (!v && v !== 0) return '—';
+  return v.toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
+}
+function toast(msg, ok=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (ok ? ' ok' : '');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').classList.toggle('show', scrollY > 380);
+});
+
+// ══════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════
+load();
+renderTables();
+calcImp();
+calcEnc();
+</script>
+</body>
+</html>
