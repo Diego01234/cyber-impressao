@@ -20,15 +20,48 @@ body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--w);overflow
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:9997;}
 body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,245,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,255,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(5,8,16,.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,245,255,.1);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;}
-.nav-brand{font-family:'Orbitron',monospace;font-size:.88rem;font-weight:900;background:linear-gradient(90deg,var(--cyan),var(--mag));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.06em;}
-.nav-links{display:flex;gap:4px;align-items:center;}
-.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--dim);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;padding:6px 10px;}
+/* ─── NAV ─────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  background:rgba(5,8,16,.9);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(0,245,255,.1);
+  /* ↓ PADDING INTERNO DA BARRA DE NAVEGAÇÃO */
+  padding:12px 24px;
+  display:grid;
+  /* 3 colunas: esquerda | centro(logo) | direita */
+  grid-template-columns: 1fr auto 1fr;
+  align-items:center;
+  gap:12px;
+}
+/* ↓ ESQUERDA DO NAV — links para outras páginas */
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+/* ↓ ESTILO DOS LINKS EXTERNOS (lado esquerdo) */
+.nav-ext-link{
+  font-family:'Share Tech Mono',monospace;
+  font-size:.68rem;    /* ↓ TAMANHO DO TEXTO DOS LINKS EXTERNOS */
+  color:var(--mag);    /* ↓ COR DOS LINKS EXTERNOS (magenta) */
+  text-decoration:none;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  border:1px solid var(--bm);
+  padding:4px 10px;
+  transition:all .2s;
+}
+.nav-ext-link:hover{background:var(--mag);color:var(--bg);}
+/* ↓ DIREITA DO NAV — links internos + auth + admin */
+.nav-links{justify-content:flex-end;}
+.nav-brand{font-family:'Orbitron',monospace;font-size:.9rem;font-weight:900;background:linear-gradient(90deg,var(--cyan),var(--mag));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-links{display:flex;gap:20px;align-items:center;}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--dim);text-decoration:none;letter-spacing:.15em;text-transform:uppercase;transition:color .2s;}
 .nav-links a:hover{color:var(--cyan);}
-.nav-admin-btn{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--mag);border:1px solid rgba(255,0,170,.35);padding:5px 12px;cursor:pointer;background:transparent;letter-spacing:.1em;transition:all .2s;}
-.nav-admin-btn:hover{background:rgba(255,0,170,.08);border-color:var(--mag);}
-@media(max-width:580px){.nav-links a{display:none;}}
+.nav-admin-btn{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--mag);border:1px solid var(--mag);padding:5px 12px;cursor:pointer;background:transparent;letter-spacing:.1em;transition:all .2s;}
+.nav-admin-btn:hover{background:var(--mag);color:var(--bg);}
+@media(max-width:600px){.nav-links a:not(.nav-admin-btn){display:none;}}
 
 /* HERO */
 .hero{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px 52px;position:relative;z-index:1;text-align:center;}
@@ -233,7 +266,13 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
 
 <!-- NAV -->
 <nav>
+  <div class="nav-left">
+    <!-- ↓ LINK PARA OUTRAS PÁGINAS — adicione <a> aqui para colocar mais links à esquerda -->
+    <a href="https://diego01234.github.io/cybergraphix-polaroides/" class="nav-ext-link">Polaroides Impressas</a>
+  </div>
+
   <div class="nav-brand">CYBER<span style="color:var(--mag)">GRAPHIX</span></div>
+
   <div class="nav-links">
     <a href="#precos">Tabela</a>
     <a href="#calculadora">Calculadora</a>
