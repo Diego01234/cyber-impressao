@@ -20,48 +20,15 @@ body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--w);overflow
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:9997;}
 body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,245,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,255,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
 
-/* ─── NAV ─────────────────────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:500;
-  background:rgba(5,8,16,.9);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(0,245,255,.1);
-  /* ↓ PADDING INTERNO DA BARRA DE NAVEGAÇÃO */
-  padding:12px 24px;
-  display:grid;
-  /* 3 colunas: esquerda | centro(logo) | direita */
-  grid-template-columns: 1fr auto 1fr;
-  align-items:center;
-  gap:12px;
-}
-/* ↓ ESQUERDA DO NAV — links para outras páginas */
-.nav-left{
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-/* ↓ ESTILO DOS LINKS EXTERNOS (lado esquerdo) */
-.nav-ext-link{
-  font-family:'Share Tech Mono',monospace;
-  font-size:.68rem;    /* ↓ TAMANHO DO TEXTO DOS LINKS EXTERNOS */
-  color:var(--mag);    /* ↓ COR DOS LINKS EXTERNOS (magenta) */
-  text-decoration:none;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  border:1px solid var(--bm);
-  padding:4px 10px;
-  transition:all .2s;
-}
-.nav-ext-link:hover{background:var(--mag);color:var(--bg);}
-/* ↓ DIREITA DO NAV — links internos + auth + admin */
-.nav-links{justify-content:flex-end;}
-.nav-brand{font-family:'Orbitron',monospace;font-size:.9rem;font-weight:900;background:linear-gradient(90deg,var(--cyan),var(--mag));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.nav-links{display:flex;gap:20px;align-items:center;}
-.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--dim);text-decoration:none;letter-spacing:.15em;text-transform:uppercase;transition:color .2s;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(5,8,16,.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,245,255,.1);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'Orbitron',monospace;font-size:.88rem;font-weight:900;background:linear-gradient(90deg,var(--cyan),var(--mag));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.06em;}
+.nav-links{display:flex;gap:4px;align-items:center;}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--dim);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;padding:6px 10px;}
 .nav-links a:hover{color:var(--cyan);}
-.nav-admin-btn{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--mag);border:1px solid var(--mag);padding:5px 12px;cursor:pointer;background:transparent;letter-spacing:.1em;transition:all .2s;}
-.nav-admin-btn:hover{background:var(--mag);color:var(--bg);}
-@media(max-width:600px){.nav-links a:not(.nav-admin-btn){display:none;}}
+.nav-admin-btn{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--mag);border:1px solid rgba(255,0,170,.35);padding:5px 12px;cursor:pointer;background:transparent;letter-spacing:.1em;transition:all .2s;}
+.nav-admin-btn:hover{background:rgba(255,0,170,.08);border-color:var(--mag);}
+@media(max-width:580px){.nav-links a{display:none;}}
 
 /* HERO */
 .hero{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px 52px;position:relative;z-index:1;text-align:center;}
@@ -120,8 +87,7 @@ section{padding:60px 20px;position:relative;z-index:1;}
 
 /* CALCULATOR */
 #calculadora{background:var(--bg);}
-.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-@media(max-width:760px){.calc-wrap{grid-template-columns:1fr;}}
+
 
 .mod-box{background:var(--gb);border:1px solid var(--bc);padding:24px;position:relative;}
 .mod-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purp),transparent);}
@@ -130,10 +96,7 @@ section{padding:60px 20px;position:relative;z-index:1;}
 .mod-head{font-family:'Orbitron',monospace;font-size:.8rem;font-weight:700;color:var(--cyan);margin-bottom:18px;letter-spacing:.1em;}
 .mod-box.mag .mod-head{color:var(--mag);}
 
-.tipo-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;}
-.tipo-btn{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px;cursor:pointer;border:1px solid var(--bc);background:transparent;color:var(--dim);transition:all .18s;text-align:center;line-height:1.4;}
-.tipo-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,245,255,.06);}
-.tipo-btn:hover:not(.active){color:var(--w);border-color:rgba(0,245,255,.35);}
+
 
 .field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
 .field label{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;}
@@ -150,7 +113,33 @@ input::placeholder{color:rgba(74,96,128,.5);}
 .qty-in:focus{outline:none;border-color:var(--cyan);}
 .qty-in.mag{color:var(--mag);}
 
-/* toggle */
+.pcard-enc-line{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:rgba(255,0,170,.6);margin-top:4px;display:none;}
+.pcard-enc-line.show{display:block;}
+.btn-export{display:flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#25d366;border:1px solid rgba(37,211,102,.3);background:rgba(37,211,102,.05);padding:9px 18px;cursor:pointer;transition:all .2s;margin:14px 0 18px;}
+.btn-export:hover{border-color:#25d366;background:rgba(37,211,102,.1);}
+
+/* PRICE CARDS */
+.price-cards-label{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;}
+.price-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+@media(max-width:560px){.price-cards{grid-template-columns:1fr;}}
+.pcard{display:block;cursor:pointer;position:relative;}
+.pcard input[type=radio]{position:absolute;opacity:0;width:0;height:0;}
+.pcard-inner{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid rgba(0,245,255,.13);background:rgba(0,0,0,.2);transition:all .18s;}
+.pcard:hover .pcard-inner{border-color:rgba(0,245,255,.35);background:rgba(0,245,255,.03);}
+.pcard input:checked ~ .pcard-inner{border-color:var(--cyan);background:rgba(0,245,255,.07);box-shadow:0 0 18px rgba(0,245,255,.12);}
+.pcard-check{width:18px;height:18px;border:2px solid var(--dim);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;}
+.pcard input:checked ~ .pcard-inner .pcard-check{border-color:var(--cyan);}
+.pcard-dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);opacity:0;transform:scale(0);transition:all .18s;}
+.pcard input:checked ~ .pcard-inner .pcard-dot{opacity:1;transform:scale(1);}
+.pcard-info{flex:1;}
+.pcard-name{font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--w);letter-spacing:.04em;}
+.pcard-sub{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--dim);margin-top:2px;}
+.pcard input:checked ~ .pcard-inner .pcard-sub{color:rgba(0,245,255,.6);}
+.pcard-prices{text-align:right;flex-shrink:0;}
+.pcard-unit{font-family:'Orbitron',monospace;font-size:.8rem;font-weight:700;color:var(--grn);}
+.pcard-total{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;color:var(--yel);text-shadow:0 0 12px rgba(255,234,0,.4);}
+.pcard input:checked ~ .pcard-inner .pcard-total{color:var(--yel);text-shadow:0 0 20px rgba(255,234,0,.6);}
+.pcard-per{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--dim);margin-top:2px;white-space:nowrap;}
 .enc-toggle{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 14px;background:rgba(255,0,170,.04);border:1px solid rgba(255,0,170,.15);cursor:pointer;transition:border-color .2s;user-select:none;}
 .enc-toggle:hover{border-color:rgba(255,0,170,.4);}
 .toggle-sw{width:36px;height:20px;background:var(--dim2);border-radius:10px;position:relative;transition:background .2s;flex-shrink:0;}
@@ -266,20 +255,11 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
 
 <!-- NAV -->
 <nav>
-  <div class="nav-left">
-    <!-- ↓ LINK PARA OUTRAS PÁGINAS — adicione <a> aqui para colocar mais links à esquerda -->
-    <a href="https://diego01234.github.io/cybergraphix-polaroides/" class="nav-ext-link">Polaroides Impressas</a>
-  </div>
-
   <div class="nav-brand">CYBER<span style="color:var(--mag)">GRAPHIX</span></div>
-
   <div class="nav-links">
     <a href="#precos">Tabela</a>
     <a href="#calculadora">Calculadora</a>
     <a href="#resumo">Orçamento</a>
-
-    <a href="https://diego01234.github.io/cybergraphix-polaroides/">Polaroides</a>
-    
     <button class="nav-admin-btn" onclick="openAdmin()">⚙ ADMIN</button>
   </div>
 </nav>
@@ -293,7 +273,7 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
     <div class="f-icon">📎</div>
   </div>
   <p class="brand-tag">[ orçamento online · v3.0 ]</p>
-  <div class="logo">Cyber Graphix</div>
+  <div class="logo">CyberGraphix</div>
   <div class="logo-sub">Impressão & Encadernação</div>
   <div class="hero-badges">
     <div class="hbadge c">🖨️ Colorida &amp; Preto e Branco</div>
@@ -344,109 +324,159 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
   <div class="container">
     <p class="sec-eye">// módulo 02 — calculadora</p>
     <h2 class="sec-title">Monte seu Pedido</h2>
-    <div class="divider"><span>◈ selecione tipo e quantidade · preço atualiza em tempo real ◈</span></div>
+    <div class="divider"><span>◈ informe a quantidade · escolha o tipo · preço em tempo real ◈</span></div>
 
-    <div class="calc-wrap">
+    <!-- ══ IMPRESSÃO ══ -->
+    <div class="mod-box" style="margin-bottom:24px;">
+      <div class="mod-head">🖨️ IMPRESSÃO</div>
 
-      <!-- ══ IMPRESSÃO ══ -->
-      <div class="mod-box">
-        <div class="mod-head">🖨️ IMPRESSÃO</div>
-
-        <div class="field" style="margin-bottom:8px;"><label>tipo de impressão</label></div>
-        <div class="tipo-btns">
-          <button class="tipo-btn active" data-tipo="frente"       onclick="selTipo(this)">Frente<br><span style="font-size:.6rem;opacity:.65">Colorida</span></button>
-          <button class="tipo-btn"        data-tipo="fev"          onclick="selTipo(this)">Frente e Verso<br><span style="font-size:.6rem;opacity:.65">Colorida</span></button>
-          <button class="tipo-btn"        data-tipo="frente_black" onclick="selTipo(this)">Frente<br><span style="font-size:.6rem;opacity:.65">Preto e Branco</span></button>
-          <button class="tipo-btn"        data-tipo="fev_black"    onclick="selTipo(this)">Frente e Verso<br><span style="font-size:.6rem;opacity:.65">Preto e Branco</span></button>
+      <!-- 1. QTD -->
+      <div class="field" style="max-width:320px;">
+        <label>quantidade de páginas</label>
+        <div class="qty-row">
+          <button class="qty-btn" onclick="chQty('impQty',-1)">−</button>
+          <input  class="qty-in"  type="number" id="impQty" value="1" min="1" oninput="calcImp()">
+          <button class="qty-btn" onclick="chQty('impQty',1)">+</button>
         </div>
-
-        <div class="field">
-          <label>quantidade de páginas</label>
-          <div class="qty-row">
-            <button class="qty-btn" onclick="chQty('impQty',-1)">−</button>
-            <input  class="qty-in"  type="number" id="impQty" value="1" min="1" oninput="calcImp()">
-            <button class="qty-btn" onclick="chQty('impQty',1)">+</button>
-          </div>
-        </div>
-
-        <!-- resultado impressão -->
-        <div class="live-box">
-          <div class="lb-group">
-            <div class="lb-lbl">unitário / página</div>
-            <div class="lb-val" id="impUnitVal">—</div>
-            <div class="lb-detail" id="impDetail"></div>
-          </div>
-          <div class="lb-group" style="text-align:right">
-            <div class="lb-lbl">total impressão</div>
-            <div class="lb-val" id="impTotalVal">—</div>
-            <div id="impTierChip"></div>
-          </div>
-        </div>
-
-        <!-- toggle encadernação -->
-        <div class="enc-toggle" onclick="toggleEnc()">
-          <div class="toggle-sw" id="encSw"></div>
-          <div class="toggle-label">Adicionar <span class="hl">encadernação</span></div>
-        </div>
-
-        <!-- bloco encadernação (calculado automaticamente) -->
-        <div class="enc-result" id="encResult">
-          <div class="enc-result-row">
-            <div class="enc-result-label">📎 Encadernação (perf. + espiral + capa + fundo)</div>
-            <div class="enc-result-val" id="encResultVal">—</div>
-          </div>
-          <div class="enc-folhas-info" id="encFolhasInfo"></div>
-        </div>
-
-        <!-- total geral (só aparece com enc ativa) -->
-        <div class="grand-box" id="impGrandBox">
-          <div class="grand-lbl">total do pedido</div>
-          <div class="grand-val" id="impGrandVal">—</div>
-        </div>
-
-        <div class="field">
-          <label>observação (opcional)</label>
-          <input type="text" id="impObs" placeholder="ex: A4, 3 cópias, frente colorida...">
-        </div>
-
-        <button class="btn-add" onclick="addImp()">+ ADICIONAR AO ORÇAMENTO</button>
       </div>
 
-      <!-- ══ ENCADERNAÇÃO AVULSA ══ -->
-      <div class="mod-box mag">
-        <div class="mod-head">📎 ENCADERNAÇÃO AVULSA</div>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--dim);margin-bottom:18px;line-height:1.75;">
-          Para encadernar documentos já impressos. O preço inclui perfuração, espiral, capa e fundo — apostila completa.
-        </p>
+      <!-- 2. CARDS com preços + checkbox -->
+      <div class="price-cards-label">Selecione o tipo de impressão:</div>
+      <div class="price-cards" id="priceCards">
 
-        <div class="field">
-          <label>número de folhas físicas</label>
-          <div class="qty-row">
-            <button class="qty-btn mag" onclick="chQtyEnc(-1)">−</button>
-            <input  class="qty-in mag" type="number" id="encQty" value="10" min="1" oninput="calcEnc()">
-            <button class="qty-btn mag" onclick="chQtyEnc(1)">+</button>
+        <label class="pcard" id="pcard-frente">
+          <input type="radio" name="tipoImp" value="frente" checked onchange="selTipoRadio('frente')">
+          <div class="pcard-inner">
+            <div class="pcard-check"><span class="pcard-dot"></span></div>
+            <div class="pcard-info">
+              <div class="pcard-name">Somente Frente</div>
+              <div class="pcard-sub">Colorida</div>
+              <div class="pcard-enc-line" id="enc-line-frente"></div>
+            </div>
+            <div class="pcard-prices">
+              <div class="pcard-unit" id="u-frente">—</div>
+              <div class="pcard-total" id="t-frente">—</div>
+              <div class="pcard-per" id="per-frente">por pág &nbsp;/&nbsp; total</div>
+            </div>
           </div>
-        </div>
+        </label>
 
-        <div class="live-box" style="border-color:rgba(255,0,170,.15);background:rgba(255,0,170,.03);">
-          <div class="lb-group">
-            <div class="lb-lbl">total encadernação</div>
-            <div class="lb-val" id="encTotalVal">—</div>
-            <div class="lb-detail" id="encDetail"></div>
+        <label class="pcard" id="pcard-fev">
+          <input type="radio" name="tipoImp" value="fev" onchange="selTipoRadio('fev')">
+          <div class="pcard-inner">
+            <div class="pcard-check"><span class="pcard-dot"></span></div>
+            <div class="pcard-info">
+              <div class="pcard-name">Frente e Verso</div>
+              <div class="pcard-sub">Colorida</div>
+              <div class="pcard-enc-line" id="enc-line-fev"></div>
+            </div>
+            <div class="pcard-prices">
+              <div class="pcard-unit" id="u-fev">—</div>
+              <div class="pcard-total" id="t-fev">—</div>
+              <div class="pcard-per" id="per-fev">por pág &nbsp;/&nbsp; total</div>
+            </div>
           </div>
-        </div>
+        </label>
 
-        <div class="field">
-          <label>observação (opcional)</label>
-          <input type="text" id="encObs" placeholder="ex: 1 via, trabalho de faculdade...">
-        </div>
+        <label class="pcard" id="pcard-frente_black">
+          <input type="radio" name="tipoImp" value="frente_black" onchange="selTipoRadio('frente_black')">
+          <div class="pcard-inner">
+            <div class="pcard-check"><span class="pcard-dot"></span></div>
+            <div class="pcard-info">
+              <div class="pcard-name">Somente Frente</div>
+              <div class="pcard-sub">Preto e Branco</div>
+              <div class="pcard-enc-line" id="enc-line-frente_black"></div>
+            </div>
+            <div class="pcard-prices">
+              <div class="pcard-unit" id="u-frente_black">—</div>
+              <div class="pcard-total" id="t-frente_black">—</div>
+              <div class="pcard-per" id="per-frente_black">por pág &nbsp;/&nbsp; total</div>
+            </div>
+          </div>
+        </label>
 
-        <button class="btn-add mag" onclick="addEnc()">+ ADICIONAR AO ORÇAMENTO</button>
+        <label class="pcard" id="pcard-fev_black">
+          <input type="radio" name="tipoImp" value="fev_black" onchange="selTipoRadio('fev_black')">
+          <div class="pcard-inner">
+            <div class="pcard-check"><span class="pcard-dot"></span></div>
+            <div class="pcard-info">
+              <div class="pcard-name">Frente e Verso</div>
+              <div class="pcard-sub">Preto e Branco</div>
+              <div class="pcard-enc-line" id="enc-line-fev_black"></div>
+            </div>
+            <div class="pcard-prices">
+              <div class="pcard-unit" id="u-fev_black">—</div>
+              <div class="pcard-total" id="t-fev_black">—</div>
+              <div class="pcard-per" id="per-fev_black">por pág &nbsp;/&nbsp; total</div>
+            </div>
+          </div>
+        </label>
 
+      </div><!-- /price-cards -->
 
+      <!-- botão exportar simulação para WhatsApp admin -->
+      <button class="btn-export" onclick="exportSimulacao()">
+        <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:currentColor;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        EXPORTAR SIMULAÇÃO
+      </button>
+
+      <!-- faixa aplicada -->
+      <div id="impTierLine" style="font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--dim);margin:10px 0 16px;display:none;">
+        faixa aplicada: <span id="impTierChip" style="color:var(--grn);"></span>
       </div>
 
+      <!-- toggle encadernação -->
+      <div class="enc-toggle" onclick="toggleEnc()">
+        <div class="toggle-sw" id="encSw"></div>
+        <div class="toggle-label">Adicionar <span class="hl">encadernação</span></div>
+      </div>
+
+      <!-- total geral -->
+      <div class="grand-box" id="impGrandBox">
+        <div class="grand-lbl">total do pedido</div>
+        <div class="grand-val" id="impGrandVal">—</div>
+      </div>
+
+      <div class="field">
+        <label>observação (opcional)</label>
+        <input type="text" id="impObs" placeholder="ex: A4, 3 cópias...">
+      </div>
+
+      <button class="btn-add" onclick="addImp()">+ ADICIONAR AO ORÇAMENTO</button>
     </div>
+
+    <!-- ══ ENCADERNAÇÃO AVULSA ══ -->
+    <div class="mod-box mag">
+      <div class="mod-head">📎 ENCADERNAÇÃO AVULSA</div>
+      <p style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--dim);margin-bottom:18px;line-height:1.75;">
+        Para encadernar documentos já impressos. Inclui perfuração, espiral, capa e fundo — apostila completa.
+      </p>
+
+      <div class="field" style="max-width:320px;">
+        <label>número de folhas físicas</label>
+        <div class="qty-row">
+          <button class="qty-btn mag" onclick="chQtyEnc(-1)">−</button>
+          <input  class="qty-in mag" type="number" id="encQty" value="10" min="1" oninput="calcEnc()">
+          <button class="qty-btn mag" onclick="chQtyEnc(1)">+</button>
+        </div>
+      </div>
+
+      <div class="live-box" style="border-color:rgba(255,0,170,.15);background:rgba(255,0,170,.03);max-width:420px;">
+        <div class="lb-group">
+          <div class="lb-lbl">total encadernação</div>
+          <div class="lb-val" id="encTotalVal">—</div>
+          <div class="lb-detail" id="encDetail"></div>
+        </div>
+      </div>
+
+      <div class="field" style="max-width:420px;">
+        <label>observação (opcional)</label>
+        <input type="text" id="encObs" placeholder="ex: 1 via, trabalho de faculdade...">
+      </div>
+
+      <button class="btn-add mag" style="max-width:420px;" onclick="addEnc()">+ ADICIONAR AO ORÇAMENTO</button>
+    </div>
+
   </div>
 </section>
 
@@ -622,13 +652,111 @@ function renderTables(){
 }
 
 // ══════════════════════════════════════════════
-// TIPO
+// TIPO — radio version
 // ══════════════════════════════════════════════
-function selTipo(btn){
-  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  tipoSel=btn.dataset.tipo;
+function selTipoRadio(tipo){
+  tipoSel=tipo;
   calcImp();
+}
+
+// ══════════════════════════════════════════════
+// CALC IMPRESSÃO — todos os 4 cards
+// ══════════════════════════════════════════════
+function calcImp(){
+  const qty  = Math.max(1, parseInt(document.getElementById('impQty').value)||1);
+  const tier = getTierImp(qty);
+
+  const tipos=['frente','fev','frente_black','fev_black'];
+  tipos.forEach(t=>{
+    const unit     = tier ? tier[t] : 0;
+    const totalImp = unit * qty;
+
+    document.getElementById('u-'+t).textContent = tier ? brl(unit) : '—';
+
+    if(encOn && tier){
+      // cada tipo calcula suas próprias folhas
+      const folhas   = pagToFolhas(qty, t);
+      const encTier  = getTierEnc(folhas);
+      const encPreco = encTier ? encTier.preco : 0;
+      const grand    = totalImp + encPreco;
+
+      document.getElementById('t-'+t).textContent = brl(grand);
+      document.getElementById('per-'+t).textContent = `imp. + encad.`;
+
+      const encLine = document.getElementById('enc-line-'+t);
+      encLine.classList.add('show');
+      encLine.textContent = isFev(t)
+        ? `📎 ${brl(encPreco)} · ${folhas}fls (${qty}pág÷2)`
+        : `📎 ${brl(encPreco)} · ${folhas}fls`;
+
+    } else {
+      document.getElementById('t-'+t).textContent = tier ? brl(totalImp) : '—';
+      document.getElementById('per-'+t).textContent = `por pág \u00a0/\u00a0 total`;
+      document.getElementById('enc-line-'+t).classList.remove('show');
+      document.getElementById('enc-line-'+t).textContent = '';
+    }
+  });
+
+  // faixa aplicada
+  const tierLine = document.getElementById('impTierLine');
+  if(tier){
+    tierLine.style.display='block';
+    document.getElementById('impTierChip').textContent=
+      `${tier.de}${tier.ate?'–'+tier.ate:'+'} páginas`;
+  } else {
+    tierLine.style.display='none';
+  }
+
+  // grand total do tipo selecionado (com enc)
+  if(encOn && tier){
+    const unit     = tier[tipoSel];
+    const totalImp = unit * qty;
+    const folhas   = pagToFolhas(qty, tipoSel);
+    const encTier  = getTierEnc(folhas);
+    const encPreco = encTier ? encTier.preco : 0;
+    document.getElementById('impGrandVal').textContent = brl(totalImp + encPreco);
+  }
+}
+
+// ══════════════════════════════════════════════
+// EXPORTAR SIMULAÇÃO → WhatsApp do admin
+// ══════════════════════════════════════════════
+function exportSimulacao(){
+  const qty  = Math.max(1, parseInt(document.getElementById('impQty').value)||1);
+  const tier = getTierImp(qty);
+  if(!tier){toast('⚠ Tabela não carregada!');return;}
+
+  const tiposInfo=[
+    {key:'frente',       nome:'Somente Frente Colorida'},
+    {key:'fev',          nome:'Frente e Verso Colorida'},
+    {key:'frente_black', nome:'Somente Frente P&B'},
+    {key:'fev_black',    nome:'Frente e Verso P&B'},
+  ];
+
+  let msg=`*SIMULAÇÃO DE PREÇOS — ${qty} páginas*\n`;
+  msg+=`Faixa: ${tier.de}${tier.ate?'–'+tier.ate:'+'} páginas\n`;
+  msg+='━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+
+  tiposInfo.forEach(({key, nome})=>{
+    const unit     = tier[key];
+    const totalImp = unit * qty;
+    msg+=`*${nome}*\n`;
+    msg+=`   ${qty} pág × ${brl(unit)} = *${brl(totalImp)}*\n`;
+    if(encOn){
+      const folhas   = pagToFolhas(qty, key);
+      const encTier  = getTierEnc(folhas);
+      const encPreco = encTier ? encTier.preco : 0;
+      const info     = isFev(key) ? ` (${qty}pág÷2=${folhas}fls)` : ` (${folhas}fls)`;
+      msg+=`Encadernação${info}: *${brl(encPreco)}*\n`;
+      msg+=`Total: *${brl(totalImp+encPreco)}*\n`;
+    }
+    msg+='\n';
+  });
+
+  msg+='━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+  msg+=`_Simulação gerada pelo site CyberGraphix_`;
+
+  window.open(`https://wa.me/${wppNum}?text=${encodeURIComponent(msg)}`,'_blank');
 }
 
 // ══════════════════════════════════════════════
@@ -637,7 +765,6 @@ function selTipo(btn){
 function toggleEnc(){
   encOn=!encOn;
   document.getElementById('encSw').classList.toggle('on',encOn);
-  document.getElementById('encResult').classList.toggle('show',encOn);
   document.getElementById('impGrandBox').classList.toggle('show',encOn);
   calcImp();
 }
@@ -655,47 +782,12 @@ function getTierEnc(folhas){
   for(const t of encData){if(folhas>=t.de)m=t;}
   return m;
 }
-
-// Frente/F Black: 1 página = 1 folha
-// F e V / F e V Black: 2 páginas = 1 folha (arredonda pra cima)
-function pagToFolhas(pags, tipo){
+function pagToFolhas(pags,tipo){
   return (tipo==='fev'||tipo==='fev_black') ? Math.ceil(pags/2) : pags;
 }
-
 function isFev(tipo){return tipo==='fev'||tipo==='fev_black';}
 
-// ══════════════════════════════════════════════
-// CALC IMPRESSÃO
-// ══════════════════════════════════════════════
-function calcImp(){
-  const qty   = Math.max(1, parseInt(document.getElementById('impQty').value)||1);
-  const tier  = getTierImp(qty);
-  const unit  = tier ? tier[tipoSel] : 0;
-  const totalImp = unit * qty;
 
-  document.getElementById('impUnitVal').textContent  = tier ? brl(unit) : '—';
-  document.getElementById('impTotalVal').textContent = tier ? brl(totalImp) : '—';
-  document.getElementById('impDetail').textContent   = tier ? `${qty} pág × ${brl(unit)}` : '';
-  document.getElementById('impTierChip').innerHTML   = tier
-    ? `<span class="tier-chip">faixa ${tier.de}${tier.ate?'–'+tier.ate:'+'}</span>` : '';
-
-  if(encOn){
-    const folhas  = pagToFolhas(qty, tipoSel);
-    const encTier = getTierEnc(folhas);
-    const encPreco= encTier ? encTier.preco : 0;
-
-    document.getElementById('encResultVal').textContent = brl(encPreco);
-    document.getElementById('encFolhasInfo').textContent = isFev(tipoSel)
-      ? `${qty} páginas ÷ 2 = ${folhas} folha${folhas!==1?'s':''} físicas · faixa ${encTier.de}${encTier.ate?'–'+encTier.ate:'+'}`
-      : `${folhas} folha${folhas!==1?'s':''} físicas · faixa ${encTier.de}${encTier.ate?'–'+encTier.ate:'+'}`;
-
-    document.getElementById('impGrandVal').textContent = brl(totalImp + encPreco);
-  }
-}
-
-// ══════════════════════════════════════════════
-// CALC ENCADERNAÇÃO AVULSA
-// ══════════════════════════════════════════════
 function calcEnc(){
   const folhas = Math.max(1, parseInt(document.getElementById('encQty').value)||1);
   const tier   = getTierEnc(folhas);
@@ -731,9 +823,9 @@ function addImp(){
   const obs     = document.getElementById('impObs').value.trim();
 
   const tipoLabel={
-    frente:       'Frente Colorida',
+    frente:       'Somente Frente Colorida',
     fev:          'Frente e Verso Colorida',
-    frente_black: 'Frente Preto e Branco',
+    frente_black: 'Somente Frente P&B',
     fev_black:    'Frente e Verso P&B',
   }[tipoSel];
 
