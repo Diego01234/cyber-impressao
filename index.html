@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyberGraphix ⚡ Impressão & Encadernação</title>
+<title>Cyber Graphix ⚡ Impressão & Encadernação</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
@@ -273,7 +273,7 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
     <div class="f-icon">📎</div>
   </div>
   <p class="brand-tag">[ orçamento online · v3.0 ]</p>
-  <div class="logo">CyberGraphix</div>
+  <div class="logo">Cyber Graphix</div>
   <div class="logo-sub">Impressão & Encadernação</div>
   <div class="hero-badges">
     <div class="hbadge c">🖨️ Colorida &amp; Preto e Branco</div>
@@ -510,7 +510,7 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
 <div class="wpp-section">
   <div class="container">
     <p class="wpp-note">
-      Orçamento pronto? Envie direto para o WhatsApp da CyberGraphix!<br>
+      Orçamento pronto? Envie direto para o WhatsApp da Cyber Graphix!<br>
       <span style="color:var(--cyan);">(92) 9 9412-0494</span> — Diego
     </p>
     <button class="btn-wpp" onclick="sendWpp()">
@@ -521,7 +521,7 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
 </div>
 
 <footer>
-  <span class="bc">CYBERGRAPHIX</span> &nbsp;◈&nbsp; impressão &amp; encadernação &nbsp;◈&nbsp; feito com <span class="bm">♥</span> no brasil
+  <span class="bc">CYBER GRAPHIX</span> &nbsp;◈&nbsp; impressão &amp; encadernação &nbsp;◈&nbsp; feito com <span class="bm">♥</span> em BVR
 </footer>
 
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
@@ -727,10 +727,10 @@ function exportSimulacao(){
   if(!tier){toast('⚠ Tabela não carregada!');return;}
 
   const tiposInfo=[
-    {key:'frente',       nome:'Somente Frente Colorida'},
-    {key:'fev',          nome:'Frente e Verso Colorida'},
-    {key:'frente_black', nome:'Somente Frente P&B'},
-    {key:'fev_black',    nome:'Frente e Verso P&B'},
+    {key:'frente',       nome:'1 - Somente Frente Colorida'},
+    {key:'fev',          nome:'2️ - Frente e Verso Colorida'},
+    {key:'frente_black', nome:'3 - Somente Frente P&B'},
+    {key:'fev_black',    nome:'4 - Frente e Verso P&B'},
   ];
 
   let msg=`*SIMULAÇÃO DE PREÇOS — ${qty} páginas*\n`;
@@ -754,7 +754,7 @@ function exportSimulacao(){
   });
 
   msg+='━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
-  msg+=`_Simulação gerada pelo site CyberGraphix_`;
+  msg+=`_Simulação gerada pelo site Cyber Graphix_`;
 
   window.open(`https://wa.me/${wppNum}?text=${encodeURIComponent(msg)}`,'_blank');
 }
@@ -909,7 +909,7 @@ function sendWpp(){
   const nome =document.getElementById('clienteNome').value.trim();
   const grand=items.reduce((a,b)=>a+b.total,0);
 
-  let msg='🖨️ *Olá, CyberGraphix!*\n';
+  let msg='🖨️ *Olá, Cyber Graphix!*\n';
   if(nome)msg+=`👤 *Nome:* ${nome}\n`;
   msg+='\n*📋 ORÇAMENTO — IMPRESSÃO & ENCADERNAÇÃO*\n';
   msg+='━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
