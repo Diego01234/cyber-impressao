@@ -84,11 +84,8 @@ section{padding:60px 20px;position:relative;z-index:1;}
 .info-box{margin-top:14px;padding:10px 12px;background:rgba(0,245,255,.04);border-left:2px solid rgba(0,245,255,.25);font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--dim);line-height:1.75;}
 .info-box strong{color:var(--cyan);}
 
-
 /* CALCULATOR */
 #calculadora{background:var(--bg);}
-
-
 .mod-box{background:var(--gb);border:1px solid var(--bc);padding:24px;position:relative;}
 .mod-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purp),transparent);}
 .mod-box.mag{border-color:var(--bm);}
@@ -96,7 +93,22 @@ section{padding:60px 20px;position:relative;z-index:1;}
 .mod-head{font-family:'Orbitron',monospace;font-size:.8rem;font-weight:700;color:var(--cyan);margin-bottom:18px;letter-spacing:.1em;}
 .mod-box.mag .mod-head{color:var(--mag);}
 
+/* MODO CLIENTE */
+.client-mode-bar{display:flex;gap:8px;margin-bottom:20px;background:rgba(0,0,0,.3);border:1px solid rgba(0,245,255,.1);padding:6px;}
+.cmode-btn{flex:1;font-family:'Orbitron',monospace;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:10px 8px;cursor:pointer;border:none;background:transparent;color:var(--dim);transition:all .2s;text-align:center;}
+.cmode-btn.active.comum{background:rgba(0,245,255,.1);color:var(--cyan);box-shadow:inset 0 0 0 1px var(--cyan);}
+.cmode-btn.active.univ{background:rgba(155,0,255,.15);color:#c07fff;box-shadow:inset 0 0 0 1px #9b00ff;}
 
+/* AVISO UNIVERSITÁRIO */
+.univ-banner{display:none;margin-bottom:18px;padding:14px 16px;background:rgba(155,0,255,.08);border:1px solid rgba(155,0,255,.3);position:relative;}
+.univ-banner.show{display:block;}
+.univ-banner-title{font-family:'Orbitron',monospace;font-size:.75rem;font-weight:700;color:#c07fff;margin-bottom:8px;letter-spacing:.08em;}
+.univ-banner-text{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:rgba(232,244,255,.65);line-height:1.75;}
+.univ-banner-text strong{color:#c07fff;}
+.univ-warn{display:none;margin-bottom:14px;padding:10px 14px;background:rgba(255,234,0,.06);border:1px solid rgba(255,234,0,.3);font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--yel);line-height:1.65;}
+.univ-warn.show{display:block;}
+.univ-min-warn{display:none;margin-bottom:14px;padding:10px 14px;background:rgba(255,68,68,.07);border:1px solid rgba(255,68,68,.3);font-family:'Share Tech Mono',monospace;font-size:.7rem;color:#ff6060;line-height:1.65;}
+.univ-min-warn.show{display:block;}
 
 .field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
 .field label{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;}
@@ -112,11 +124,6 @@ input::placeholder{color:rgba(74,96,128,.5);}
 .qty-in{flex:1;text-align:center;background:rgba(0,245,255,.05);border:1px solid var(--bc);color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:1.05rem;padding:8px 6px;min-width:0;}
 .qty-in:focus{outline:none;border-color:var(--cyan);}
 .qty-in.mag{color:var(--mag);}
-
-.pcard-enc-line{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:rgba(255,0,170,.6);margin-top:4px;display:none;}
-.pcard-enc-line.show{display:block;}
-.btn-export{display:flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#25d366;border:1px solid rgba(37,211,102,.3);background:rgba(37,211,102,.05);padding:9px 18px;cursor:pointer;transition:all .2s;margin:14px 0 18px;}
-.btn-export:hover{border-color:#25d366;background:rgba(37,211,102,.1);}
 
 /* PRICE CARDS */
 .price-cards-label{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;}
@@ -140,6 +147,23 @@ input::placeholder{color:rgba(74,96,128,.5);}
 .pcard-total{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;color:var(--yel);text-shadow:0 0 12px rgba(255,234,0,.4);}
 .pcard input:checked ~ .pcard-inner .pcard-total{color:var(--yel);text-shadow:0 0 20px rgba(255,234,0,.6);}
 .pcard-per{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--dim);margin-top:2px;white-space:nowrap;}
+.pcard-enc-line{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:rgba(255,0,170,.6);margin-top:4px;display:none;}
+.pcard-enc-line.show{display:block;}
+
+/* botão encaminhar pedido (aparece ao selecionar card) */
+.btn-encaminhar{display:none;width:100%;margin-top:14px;font-family:'Orbitron',monospace;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#25d366,#00c853);border:none;padding:14px 28px;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all .2s;align-items:center;justify-content:center;gap:10px;}
+.btn-encaminhar.show{display:flex;}
+.btn-encaminhar:hover{box-shadow:0 0 32px rgba(37,211,102,.55);transform:translateY(-2px);}
+.btn-encaminhar svg{width:18px;height:18px;fill:#fff;flex-shrink:0;}
+
+/* botões de simulação */
+.sim-btns{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px;}
+.btn-export{display:flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#25d366;border:1px solid rgba(37,211,102,.3);background:rgba(37,211,102,.05);padding:9px 18px;cursor:pointer;transition:all .2s;}
+.btn-export:hover{border-color:#25d366;background:rgba(37,211,102,.1);}
+.btn-copy{color:var(--cyan);border-color:rgba(0,245,255,.3);background:rgba(0,245,255,.05);}
+.btn-copy:hover{border-color:var(--cyan);background:rgba(0,245,255,.1);}
+
+/* toggle enc */
 .enc-toggle{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 14px;background:rgba(255,0,170,.04);border:1px solid rgba(255,0,170,.15);cursor:pointer;transition:border-color .2s;user-select:none;}
 .enc-toggle:hover{border-color:rgba(255,0,170,.4);}
 .toggle-sw{width:36px;height:20px;background:var(--dim2);border-radius:10px;position:relative;transition:background .2s;flex-shrink:0;}
@@ -149,13 +173,11 @@ input::placeholder{color:rgba(74,96,128,.5);}
 .toggle-label{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--dim);letter-spacing:.06em;}
 .toggle-label .hl{color:var(--mag);}
 
-/* enc result */
-.enc-result{display:none;margin-bottom:14px;padding:12px 14px;background:rgba(255,0,170,.04);border:1px solid rgba(255,0,170,.2);}
-.enc-result.show{display:block;}
-.enc-result-row{display:flex;justify-content:space-between;align-items:center;gap:8px;}
-.enc-result-label{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--dim);}
-.enc-result-val{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--mag);}
-.enc-folhas-info{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:rgba(255,0,170,.5);margin-top:6px;line-height:1.5;}
+/* grand total */
+.grand-box{display:none;padding:14px 16px;background:rgba(255,234,0,.04);border:1px solid rgba(255,234,0,.25);margin-bottom:14px;}
+.grand-box.show{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.grand-lbl{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:rgba(255,234,0,.7);letter-spacing:.1em;text-transform:uppercase;}
+.grand-val{font-family:'Orbitron',monospace;font-size:1.55rem;font-weight:900;color:var(--yel);text-shadow:0 0 20px rgba(255,234,0,.5);}
 
 /* live boxes */
 .live-box{background:rgba(0,0,0,.3);border:1px solid rgba(0,245,255,.12);padding:14px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;}
@@ -163,44 +185,6 @@ input::placeholder{color:rgba(74,96,128,.5);}
 .lb-lbl{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;}
 .lb-val{font-family:'Orbitron',monospace;font-size:1.35rem;font-weight:900;color:var(--yel);text-shadow:0 0 18px rgba(255,234,0,.45);}
 .lb-detail{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--dim);margin-top:2px;}
-.tier-chip{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:.6rem;padding:2px 8px;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:var(--grn);margin-top:4px;letter-spacing:.06em;}
-
-/* grand total */
-.grand-box{display:none;padding:14px 16px;background:rgba(255,234,0,.04);border:1px solid rgba(255,234,0,.25);margin-bottom:14px;}
-.grand-box.show{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-.grand-lbl{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:rgba(255,234,0,.7);letter-spacing:.1em;text-transform:uppercase;}
-.grand-val{font-family:'Orbitron',monospace;font-size:1.55rem;font-weight:900;color:var(--yel);text-shadow:0 0 20px rgba(255,234,0,.5);}
-
-/* add btn */
-.btn-add{font-family:'Orbitron',monospace;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:linear-gradient(90deg,var(--cyan),var(--purp));border:none;padding:12px 28px;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all .2s;width:100%;}
-.btn-add:hover{box-shadow:0 0 28px rgba(0,245,255,.4);transform:translateY(-2px);}
-.btn-add.mag{background:linear-gradient(90deg,var(--mag),var(--purp));}
-.btn-add.mag:hover{box-shadow:0 0 28px rgba(255,0,170,.4);}
-
-/* SUMMARY */
-#resumo{background:var(--bg2);}
-.sum-box{background:var(--gm);border:1px solid var(--bm);padding:28px;position:relative;margin-bottom:20px;}
-.sum-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--mag),var(--cyan),var(--mag));}
-.sum-title{font-family:'Orbitron',monospace;font-size:.88rem;font-weight:700;color:var(--mag);margin-bottom:20px;letter-spacing:.1em;text-shadow:0 0 16px rgba(255,0,170,.4);}
-.sum-item{padding:10px 0;border-bottom:1px solid rgba(0,245,255,.07);}
-.sum-item:last-child{border-bottom:none;}
-.sum-item-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px;}
-.sum-item-name{font-family:'Share Tech Mono',monospace;font-size:.78rem;color:var(--w);flex:1;}
-.sum-item-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
-.sum-item-val{font-family:'Orbitron',monospace;font-size:.9rem;color:var(--cyan);}
-.sum-item-del{background:none;border:none;color:var(--dim);cursor:pointer;font-size:.9rem;transition:color .15s;padding:2px 4px;}
-.sum-item-del:hover{color:var(--mag);}
-.sum-item-lines{padding-left:10px;}
-.sum-item-line{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--dim);line-height:1.9;}
-.sum-item-line span{color:var(--cyan);}
-.sum-total{display:flex;justify-content:space-between;align-items:center;padding-top:18px;margin-top:8px;border-top:1px solid var(--bm);}
-.tot-lbl{font-family:'Orbitron',monospace;font-size:.72rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;}
-.tot-val{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--yel);text-shadow:0 0 22px rgba(255,234,0,.55);}
-.empty-msg{text-align:center;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:.8rem;padding:22px 0;letter-spacing:.05em;}
-.sum-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;}
-.field-nome{flex:1;min-width:200px;}
-.btn-clear{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:10px 18px;cursor:pointer;border:1px solid rgba(255,68,68,.35);background:transparent;color:rgba(255,68,68,.7);transition:all .2s;white-space:nowrap;}
-.btn-clear:hover{border-color:#ff4444;color:#ff4444;}
 
 /* WPP */
 .wpp-section{background:var(--bg);padding:60px 20px;text-align:center;border-top:1px solid rgba(0,245,255,.07);position:relative;z-index:1;}
@@ -259,7 +243,6 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
   <div class="nav-links">
     <a href="#precos">Tabela</a>
     <a href="#calculadora">Calculadora</a>
-    <a href="#resumo">Orçamento</a>
     <button class="nav-admin-btn" onclick="openAdmin()">⚙ ADMIN</button>
   </div>
 </nav>
@@ -272,15 +255,15 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
     <div class="f-icon">📄</div>
     <div class="f-icon">📎</div>
   </div>
-  <p class="brand-tag">[ orçamento online · v3.0 ]</p>
+  <p class="brand-tag">[ orçamento online · v4.0 ]</p>
   <div class="logo">Cyber Graphix</div>
   <div class="logo-sub">Impressão & Encadernação</div>
   <div class="hero-badges">
     <div class="hbadge c">🖨️ Colorida &amp; Preto e Branco</div>
     <div class="hbadge m">📎 Encadernação com Espiral</div>
-    <div class="hbadge g">⚡ Preço cai com a quantidade</div>
+    <div class="hbadge g">🎓 Desconto Universitário</div>
   </div>
-  <p class="hero-desc">Monte seu orçamento de impressão com ou sem encadernação, veja o total em tempo real e envie direto pelo WhatsApp.</p>
+  <p class="hero-desc">Calcule o valor da sua impressão com ou sem encadernação e envie direto pelo WhatsApp.</p>
   <button class="btn-hero" onclick="document.getElementById('calculadora').scrollIntoView({behavior:'smooth'})">▶ CALCULAR ORÇAMENTO</button>
 </section>
 
@@ -312,7 +295,6 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
           <strong>Inclui:</strong> perfuração + espiral + capa + fundo (apostila completa).<br>
           <strong>Frente e Verso:</strong> 100 páginas = 50 folhas físicas.
         </div>
-
       </div>
 
     </div>
@@ -330,9 +312,35 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
     <div class="mod-box" style="margin-bottom:24px;">
       <div class="mod-head">🖨️ IMPRESSÃO</div>
 
-      <!-- 1. QTD -->
+      <!-- SELETOR DE MODO CLIENTE -->
+      <div class="client-mode-bar">
+        <button class="cmode-btn active comum" id="btnComum" onclick="setModo('comum')">👤 CLIENTE COMUM</button>
+        <button class="cmode-btn univ"          id="btnUniv"  onclick="setModo('univ')">🎓 UNIVERSITÁRIO</button>
+      </div>
+
+      <!-- BANNER UNIVERSITÁRIO -->
+      <div class="univ-banner" id="univBanner">
+        <div class="univ-banner-title">🎓 DESCONTO UNIVERSITÁRIO</div>
+        <div class="univ-banner-text">
+          Válido para alunos de <strong>cursos profissionalizantes, cursos técnicos e faculdade</strong>.<br>
+          ⚠️ <strong>Atenção:</strong> caso não seja possível comprovar que você é universitário, a impressão e/ou encadernação será cobrada no valor de <strong>cliente comum</strong>.<br>
+          📄 Mínimo de <strong>20 páginas</strong> para aplicar o desconto universitário.
+        </div>
+      </div>
+
+      <!-- AVISO MIGRAR PARA COMUM (acima de 250 páginas) -->
+      <div class="univ-warn" id="univWarn">
+        ⚡ <strong>Atenção universitário:</strong> acima de 250 páginas, a tabela de <strong>cliente comum</strong> pode ser mais vantajosa! Clique em "Cliente Comum" para comparar os valores.
+      </div>
+
+      <!-- AVISO MÍNIMO 20 PÁGINAS -->
+      <div class="univ-min-warn" id="univMinWarn">
+        ⛔ O desconto universitário é válido a partir de <strong>20 páginas</strong>. Para quantidades menores, clique em <strong>Cliente Comum</strong> para ver o valor correto.
+      </div>
+
+      <!-- QTD -->
       <div class="field" style="max-width:320px;">
-        <label>quantidade de páginas</label>
+        <label id="lblQty">quantidade de páginas</label>
         <div class="qty-row">
           <button class="qty-btn" onclick="chQty('impQty',-1)">−</button>
           <input  class="qty-in"  type="number" id="impQty" value="1" min="1" oninput="calcImp()">
@@ -340,7 +348,7 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
         </div>
       </div>
 
-      <!-- 2. CARDS com preços + checkbox -->
+      <!-- CARDS -->
       <div class="price-cards-label">Selecione o tipo de impressão:</div>
       <div class="price-cards" id="priceCards">
 
@@ -414,14 +422,26 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
 
       </div><!-- /price-cards -->
 
-      <!-- botão exportar simulação para WhatsApp admin -->
-      <button class="btn-export" onclick="exportSimulacao()">
-        <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:currentColor;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        EXPORTAR SIMULAÇÃO
+      <!-- BOTÃO ENCAMINHAR PEDIDO (aparece ao selecionar tipo) -->
+      <button class="btn-encaminhar show" id="btnEncaminhar" onclick="encaminharPedido()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        ENCAMINHAR ESSE PEDIDO PARA A CYBER
       </button>
 
+      <!-- BOTÕES SIMULAÇÃO -->
+      <div class="sim-btns">
+        <button class="btn-export" onclick="exportSimulacao()">
+          <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:currentColor;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          EXPORTAR SIMULAÇÃO
+        </button>
+        <button class="btn-export btn-copy" id="copyBtn" onclick="copiarSimulacao()">
+          <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:currentColor;flex-shrink:0"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          COPIAR SIMULAÇÃO
+        </button>
+      </div>
+
       <!-- faixa aplicada -->
-      <div id="impTierLine" style="font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--dim);margin:10px 0 16px;display:none;">
+      <div id="impTierLine" style="font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--dim);margin:0 0 16px;display:none;">
         faixa aplicada: <span id="impTierChip" style="color:var(--grn);"></span>
       </div>
 
@@ -431,19 +451,13 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
         <div class="toggle-label">Adicionar <span class="hl">encadernação</span></div>
       </div>
 
-      <!-- total geral -->
+      <!-- total geral (com enc) -->
       <div class="grand-box" id="impGrandBox">
-        <div class="grand-lbl">total do pedido</div>
+        <div class="grand-lbl">total do pedido (tipo selecionado + encad.)</div>
         <div class="grand-val" id="impGrandVal">—</div>
       </div>
 
-      <div class="field">
-        <label>observação (opcional)</label>
-        <input type="text" id="impObs" placeholder="ex: A4, 3 cópias...">
-      </div>
-
-      <button class="btn-add" onclick="addImp()">+ ADICIONAR AO ORÇAMENTO</button>
-    </div>
+    </div><!-- /mod-box impressão -->
 
     <!-- ══ ENCADERNAÇÃO AVULSA ══ -->
     <div class="mod-box mag">
@@ -469,59 +483,27 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
         </div>
       </div>
 
-      <div class="field" style="max-width:420px;">
-        <label>observação (opcional)</label>
-        <input type="text" id="encObs" placeholder="ex: 1 via, trabalho de faculdade...">
-      </div>
-
-      <button class="btn-add mag" style="max-width:420px;" onclick="addEnc()">+ ADICIONAR AO ORÇAMENTO</button>
-    </div>
+    </div><!-- /mod-box enc avulsa -->
 
   </div>
 </section>
 
-<!-- RESUMO -->
-<section id="resumo">
-  <div class="container">
-    <p class="sec-eye">// módulo 03 — orçamento</p>
-    <h2 class="sec-title">Resumo do Orçamento</h2>
-    <div class="divider"><span>◈ revise os itens e envie pelo WhatsApp ◈</span></div>
-
-    <div class="sum-box">
-      <div class="sum-title">▶ ITENS DO ORÇAMENTO</div>
-      <div id="sumItems"><p class="empty-msg">&gt; nenhum item adicionado ainda...</p></div>
-      <div id="sumTotalRow" style="display:none" class="sum-total">
-        <span class="tot-lbl">// total estimado</span>
-        <span class="tot-val" id="totVal">R$ 0,00</span>
-      </div>
-    </div>
-
-    <div class="sum-controls">
-      <div class="field field-nome">
-        <label>seu nome (opcional)</label>
-        <input type="text" id="clienteNome" placeholder="como você se chama?">
-      </div>
-      <button class="btn-clear" onclick="clearAll()">✕ LIMPAR TUDO</button>
-    </div>
-  </div>
-</section>
-
-<!-- WHATSAPP -->
+<!-- WPP -->
 <div class="wpp-section">
   <div class="container">
     <p class="wpp-note">
-      Orçamento pronto? Envie direto para o WhatsApp da Cyber Graphix!<br>
+      Pronto para fazer seu pedido? Fale direto com a Cyber Graphix!<br>
       <span style="color:var(--cyan);">(92) 9 9412-0494</span> — Diego
     </p>
-    <button class="btn-wpp" onclick="sendWpp()">
+    <button class="btn-wpp" onclick="encaminharPedido()">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      ENVIAR ORÇAMENTO
+      ENVIAR PEDIDO PELO WHATSAPP
     </button>
   </div>
 </div>
 
 <footer>
-  <span class="bc">CYBER GRAPHIX</span> &nbsp;◈&nbsp; impressão &amp; encadernação &nbsp;◈&nbsp; feito com <span class="bm">♥</span> em BVR
+  <span class="bc">CYBER GRAPHIX</span> &nbsp;◈&nbsp; impressão &amp; encadernação &nbsp;◈&nbsp; feito com <span class="bm">♥</span> no brasil
 </footer>
 
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
@@ -578,7 +560,7 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
 
 <script>
 // ══════════════════════════════════════════════
-// DADOS PADRÃO (da planilha "Dados")
+// DADOS PADRÃO
 // ══════════════════════════════════════════════
 const IMP_DEF = [
   { de:1,   ate:10,  frente:2.0, fev:2.0, frente_black:1.0, fev_black:1.0 },
@@ -588,8 +570,6 @@ const IMP_DEF = [
   { de:101, ate:150, frente:0.8, fev:0.6, frente_black:0.4, fev_black:0.3 },
   { de:151, ate:null,frente:0.6, fev:0.4, frente_black:0.3, fev_black:0.2 },
 ];
-// Encadernação: faixas por FOLHAS FÍSICAS
-// Inclui perfuração + espiral + capa + fundo (apostila completa)
 const ENC_DEF = [
   { de:1,   ate:100, preco:10 },
   { de:101, ate:150, preco:13 },
@@ -600,20 +580,30 @@ const ENC_DEF = [
   { de:401, ate:450, preco:30 },
   { de:451, ate:null,preco:35 },
 ];
-const PERF_DEF = 6; // mantido apenas para leitura de xlsx legado
+const PERF_DEF = 6;
+
+// Preços fixos universitário (não mudam com faixa, valem a partir de 20 páginas)
+const UNIV_PRECOS = {
+  frente:       0.60,
+  fev:          0.45,
+  frente_black: 0.50,
+  fev_black:    0.35,
+};
+const UNIV_MIN_PAGS = 20;       // mínimo de páginas para desconto univ.
+const UNIV_MAX_VANT  = 250;     // acima disso, comum pode ser mais barato
 
 // ══════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════
-let impData   = IMP_DEF.map(r=>({...r}));
-let encData   = ENC_DEF.map(r=>({...r}));
-let perfPreco = PERF_DEF;
-let wppNum    = '5592994120494';
-let items     = [];
-let tipoSel   = 'frente';
-let encOn     = false;
-let adminLogged = false;
-let pendingXlsx = null;
+let impData    = IMP_DEF.map(r=>({...r}));
+let encData    = ENC_DEF.map(r=>({...r}));
+let perfPreco  = PERF_DEF;
+let wppNum     = '5592994120494';
+let tipoSel    = 'frente';
+let encOn      = false;
+let modoUniv   = false;   // false = cliente comum, true = universitário
+let adminLogged  = false;
+let pendingXlsx  = null;
 
 // ══════════════════════════════════════════════
 // STORAGE
@@ -632,7 +622,7 @@ function saveStorage(){
 }
 
 // ══════════════════════════════════════════════
-// RENDER TABLES
+// RENDER TABELAS
 // ══════════════════════════════════════════════
 function renderTables(){
   document.getElementById('tbodyImp').innerHTML=impData.map(r=>`<tr>
@@ -642,130 +632,25 @@ function renderTables(){
     <td class="ptag">${brl(r.frente_black)}</td>
     <td class="ptag">${brl(r.fev_black)}</td>
   </tr>`).join('');
-
   document.getElementById('tbodyEnc').innerHTML=encData.map(r=>`<tr>
     <td>${r.de}${r.ate?'–'+r.ate:'+'}</td>
     <td class="ptag-mag">${brl(r.preco)}</td>
   </tr>`).join('');
-
-
 }
 
 // ══════════════════════════════════════════════
-// TIPO — radio version
+// MODO CLIENTE (comum / universitário)
 // ══════════════════════════════════════════════
-function selTipoRadio(tipo){
-  tipoSel=tipo;
-  calcImp();
-}
-
-// ══════════════════════════════════════════════
-// CALC IMPRESSÃO — todos os 4 cards
-// ══════════════════════════════════════════════
-function calcImp(){
-  const qty  = Math.max(1, parseInt(document.getElementById('impQty').value)||1);
-  const tier = getTierImp(qty);
-
-  const tipos=['frente','fev','frente_black','fev_black'];
-  tipos.forEach(t=>{
-    const unit     = tier ? tier[t] : 0;
-    const totalImp = unit * qty;
-
-    document.getElementById('u-'+t).textContent = tier ? brl(unit) : '—';
-
-    if(encOn && tier){
-      // cada tipo calcula suas próprias folhas
-      const folhas   = pagToFolhas(qty, t);
-      const encTier  = getTierEnc(folhas);
-      const encPreco = encTier ? encTier.preco : 0;
-      const grand    = totalImp + encPreco;
-
-      document.getElementById('t-'+t).textContent = brl(grand);
-      document.getElementById('per-'+t).textContent = `imp. + encad.`;
-
-      const encLine = document.getElementById('enc-line-'+t);
-      encLine.classList.add('show');
-      encLine.textContent = isFev(t)
-        ? `📎 ${brl(encPreco)} · ${folhas}fls (${qty}pág÷2)`
-        : `📎 ${brl(encPreco)} · ${folhas}fls`;
-
-    } else {
-      document.getElementById('t-'+t).textContent = tier ? brl(totalImp) : '—';
-      document.getElementById('per-'+t).textContent = `por pág \u00a0/\u00a0 total`;
-      document.getElementById('enc-line-'+t).classList.remove('show');
-      document.getElementById('enc-line-'+t).textContent = '';
-    }
-  });
-
-  // faixa aplicada
-  const tierLine = document.getElementById('impTierLine');
-  if(tier){
-    tierLine.style.display='block';
-    document.getElementById('impTierChip').textContent=
-      `${tier.de}${tier.ate?'–'+tier.ate:'+'} páginas`;
-  } else {
-    tierLine.style.display='none';
+function setModo(modo){
+  modoUniv = (modo === 'univ');
+  document.getElementById('btnComum').classList.toggle('active', !modoUniv);
+  document.getElementById('btnUniv').classList.toggle('active',  modoUniv);
+  document.getElementById('univBanner').classList.toggle('show', modoUniv);
+  // resetar qty se entrar no modo univ com menos de 20 págs
+  if(modoUniv){
+    const qty = parseInt(document.getElementById('impQty').value)||1;
+    if(qty < UNIV_MIN_PAGS) document.getElementById('impQty').value = UNIV_MIN_PAGS;
   }
-
-  // grand total do tipo selecionado (com enc)
-  if(encOn && tier){
-    const unit     = tier[tipoSel];
-    const totalImp = unit * qty;
-    const folhas   = pagToFolhas(qty, tipoSel);
-    const encTier  = getTierEnc(folhas);
-    const encPreco = encTier ? encTier.preco : 0;
-    document.getElementById('impGrandVal').textContent = brl(totalImp + encPreco);
-  }
-}
-
-// ══════════════════════════════════════════════
-// EXPORTAR SIMULAÇÃO → WhatsApp do admin
-// ══════════════════════════════════════════════
-function exportSimulacao(){
-  const qty  = Math.max(1, parseInt(document.getElementById('impQty').value)||1);
-  const tier = getTierImp(qty);
-  if(!tier){toast('⚠ Tabela não carregada!');return;}
-
-  const tiposInfo=[
-    {key:'frente',       nome:'1 - Somente Frente Colorida'},
-    {key:'fev',          nome:'2️ - Frente e Verso Colorida'},
-    {key:'frente_black', nome:'3 - Somente Frente P&B'},
-    {key:'fev_black',    nome:'4 - Frente e Verso P&B'},
-  ];
-
-  let msg=`*SIMULAÇÃO DE PREÇOS — ${qty} páginas*\n`;
-  msg+=`Faixa: ${tier.de}${tier.ate?'–'+tier.ate:'+'} páginas\n`;
-  msg+='━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
-
-  tiposInfo.forEach(({key, nome})=>{
-    const unit     = tier[key];
-    const totalImp = unit * qty;
-    msg+=`*${nome}*\n`;
-    msg+=`   ${qty} pág × ${brl(unit)} = *${brl(totalImp)}*\n`;
-    if(encOn){
-      const folhas   = pagToFolhas(qty, key);
-      const encTier  = getTierEnc(folhas);
-      const encPreco = encTier ? encTier.preco : 0;
-      const info     = isFev(key) ? ` (${qty}pág÷2=${folhas}fls)` : ` (${folhas}fls)`;
-      msg+=`Encadernação${info}: *${brl(encPreco)}*\n`;
-      msg+=`Total: *${brl(totalImp+encPreco)}*\n`;
-    }
-    msg+='\n';
-  });
-
-  msg+='━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
-  msg+=`_Simulação gerada pelo site Cyber Graphix_`;
-
-  window.open(`https://wa.me/${wppNum}?text=${encodeURIComponent(msg)}`,'_blank');
-}
-
-// ══════════════════════════════════════════════
-// TOGGLE ENCADERNAÇÃO
-// ══════════════════════════════════════════════
-function toggleEnc(){
-  encOn=!encOn;
-  document.getElementById('encSw').classList.toggle('on',encOn);
-  document.getElementById('impGrandBox').classList.toggle('show',encOn);
   calcImp();
 }
 
@@ -787,7 +672,123 @@ function pagToFolhas(pags,tipo){
 }
 function isFev(tipo){return tipo==='fev'||tipo==='fev_black';}
 
+// retorna preço unitário conforme modo
+function getUnit(tipo, tier){
+  if(modoUniv) return UNIV_PRECOS[tipo];
+  return tier ? tier[tipo] : 0;
+}
 
+// ══════════════════════════════════════════════
+// TIPO (radio)
+// ══════════════════════════════════════════════
+function selTipoRadio(tipo){
+  tipoSel=tipo;
+  calcImp();
+}
+
+// ══════════════════════════════════════════════
+// CALC IMPRESSÃO — atualiza todos os 4 cards
+// ══════════════════════════════════════════════
+function calcImp(){
+  const rawQty = parseInt(document.getElementById('impQty').value)||1;
+
+  // ── Validação modo universitário ──
+  const warnMin  = document.getElementById('univMinWarn');
+  const warnMax  = document.getElementById('univWarn');
+
+  if(modoUniv){
+    if(rawQty < UNIV_MIN_PAGS){
+      warnMin.classList.add('show');
+      warnMax.classList.remove('show');
+      // limpa cards e sai
+      ['frente','fev','frente_black','fev_black'].forEach(t=>{
+        document.getElementById('u-'+t).textContent='—';
+        document.getElementById('t-'+t).textContent='—';
+        document.getElementById('per-'+t).textContent='mín. 20 páginas';
+        document.getElementById('enc-line-'+t).classList.remove('show');
+      });
+      document.getElementById('impTierLine').style.display='none';
+      document.getElementById('impGrandBox').classList.remove('show');
+      return;
+    } else {
+      warnMin.classList.remove('show');
+    }
+    warnMax.classList.toggle('show', rawQty > UNIV_MAX_VANT);
+  } else {
+    warnMin.classList.remove('show');
+    warnMax.classList.remove('show');
+  }
+
+  const qty  = Math.max(1, rawQty);
+  const tier = getTierImp(qty); // usado apenas para comum
+
+  const tipos=['frente','fev','frente_black','fev_black'];
+  tipos.forEach(t=>{
+    const unit     = getUnit(t, tier);
+    const totalImp = unit * qty;
+
+    document.getElementById('u-'+t).textContent = brl(unit);
+
+    if(encOn){
+      const folhas   = pagToFolhas(qty, t);
+      const encTier  = getTierEnc(folhas);
+      const encPreco = encTier ? encTier.preco : 0;
+      const grand    = totalImp + encPreco;
+      document.getElementById('t-'+t).textContent      = brl(grand);
+      document.getElementById('per-'+t).textContent    = 'imp. + encad.';
+      const encLine = document.getElementById('enc-line-'+t);
+      encLine.classList.add('show');
+      encLine.textContent = isFev(t)
+        ? `📎 ${brl(encPreco)} · ${folhas}fls (${qty}pág÷2)`
+        : `📎 ${brl(encPreco)} · ${folhas}fls`;
+    } else {
+      document.getElementById('t-'+t).textContent      = brl(totalImp);
+      document.getElementById('per-'+t).textContent    = 'por pág\u00a0/\u00a0total';
+      document.getElementById('enc-line-'+t).classList.remove('show');
+      document.getElementById('enc-line-'+t).textContent='';
+    }
+  });
+
+  // faixa (só para comum)
+  const tierLine = document.getElementById('impTierLine');
+  if(!modoUniv && tier){
+    tierLine.style.display='block';
+    document.getElementById('impTierChip').textContent=
+      `${tier.de}${tier.ate?'–'+tier.ate:'+'} páginas`;
+  } else if(modoUniv){
+    tierLine.style.display='block';
+    document.getElementById('impTierChip').textContent='🎓 Preço universitário fixo';
+    document.getElementById('impTierChip').style.color='#c07fff';
+  } else {
+    tierLine.style.display='none';
+  }
+
+  // grand total do tipo selecionado
+  if(encOn){
+    const unit     = getUnit(tipoSel, tier);
+    const totalImp = unit * qty;
+    const folhas   = pagToFolhas(qty, tipoSel);
+    const encTier  = getTierEnc(folhas);
+    const encPreco = encTier ? encTier.preco : 0;
+    document.getElementById('impGrandBox').classList.add('show');
+    document.getElementById('impGrandVal').textContent = brl(totalImp + encPreco);
+  } else {
+    document.getElementById('impGrandBox').classList.remove('show');
+  }
+}
+
+// ══════════════════════════════════════════════
+// TOGGLE ENCADERNAÇÃO
+// ══════════════════════════════════════════════
+function toggleEnc(){
+  encOn=!encOn;
+  document.getElementById('encSw').classList.toggle('on',encOn);
+  calcImp();
+}
+
+// ══════════════════════════════════════════════
+// CALC ENCADERNAÇÃO AVULSA
+// ══════════════════════════════════════════════
 function calcEnc(){
   const folhas = Math.max(1, parseInt(document.getElementById('encQty').value)||1);
   const tier   = getTierEnc(folhas);
@@ -801,7 +802,9 @@ function calcEnc(){
 // ══════════════════════════════════════════════
 function chQty(id, delta){
   const el=document.getElementById(id);
-  el.value=Math.max(1,(parseInt(el.value)||1)+delta);
+  let v=(parseInt(el.value)||1)+delta;
+  if(modoUniv && v < UNIV_MIN_PAGS) v = UNIV_MIN_PAGS;
+  el.value=Math.max(1, v);
   calcImp();
 }
 function chQtyEnc(delta){
@@ -811,16 +814,81 @@ function chQtyEnc(delta){
 }
 
 // ══════════════════════════════════════════════
-// ADD ITEMS
+// MONTAR TEXTO DE SIMULAÇÃO (reutilizado por export, copy e encaminhar)
 // ══════════════════════════════════════════════
-function addImp(){
+function montarTextoSimulacao(){
   const qty  = Math.max(1, parseInt(document.getElementById('impQty').value)||1);
   const tier = getTierImp(qty);
-  if(!tier){toast('⚠ Tabela de impressão não carregada!');return;}
+  const modoLabel = modoUniv ? '🎓 Universitário' : '👤 Cliente Comum';
 
-  const unit    = tier[tipoSel];
-  const totalImp= unit * qty;
-  const obs     = document.getElementById('impObs').value.trim();
+  const tiposInfo=[
+    {key:'frente',       nome:'1️⃣ Somente Frente Colorida'},
+    {key:'fev',          nome:'2️⃣ Frente e Verso Colorida'},
+    {key:'frente_black', nome:'3️⃣ Somente Frente P&B'},
+    {key:'fev_black',    nome:'4️⃣ Frente e Verso P&B'},
+  ];
+
+  let msg=`🖨️ *SIMULAÇÃO DE PREÇOS — ${qty} páginas*\n`;
+  msg+=`👤 Modalidade: *${modoLabel}*\n`;
+  if(!modoUniv && tier) msg+=`📊 Faixa: ${tier.de}${tier.ate?'–'+tier.ate:'+'} páginas\n`;
+  msg+='━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+
+  tiposInfo.forEach(({key, nome})=>{
+    const unit     = getUnit(key, tier);
+    const totalImp = unit * qty;
+    msg+=`*${nome}*\n`;
+    msg+=`   ${qty} pág × ${brl(unit)} = *${brl(totalImp)}*\n`;
+    if(encOn){
+      const folhas   = pagToFolhas(qty, key);
+      const encTier  = getTierEnc(folhas);
+      const encPreco = encTier ? encTier.preco : 0;
+      const info     = isFev(key) ? ` (${qty}pág÷2=${folhas}fls)` : ` (${folhas}fls)`;
+      msg+=`   📎 Encadernação${info}: *${brl(encPreco)}*\n`;
+      msg+=`   💰 Total: *${brl(totalImp+encPreco)}*\n`;
+    }
+    msg+='\n';
+  });
+
+  msg+='━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+  if(modoUniv) msg+=`⚠️ _Sujeito à comprovação de vínculo universitário._\n`;
+  msg+=`_Simulação gerada pelo site Cyber Graphix_`;
+  return msg;
+}
+
+// ══════════════════════════════════════════════
+// EXPORTAR → WhatsApp admin
+// ══════════════════════════════════════════════
+function exportSimulacao(){
+  const qty = parseInt(document.getElementById('impQty').value)||1;
+  if(modoUniv && qty < UNIV_MIN_PAGS){toast('⚠ Mínimo 20 páginas para universitário!');return;}
+  const msg = montarTextoSimulacao();
+  window.open(`https://wa.me/${wppNum}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+// ══════════════════════════════════════════════
+// COPIAR SIMULAÇÃO → clipboard
+// ══════════════════════════════════════════════
+function copiarSimulacao(){
+  const qty = parseInt(document.getElementById('impQty').value)||1;
+  if(modoUniv && qty < UNIV_MIN_PAGS){toast('⚠ Mínimo 20 páginas para universitário!');return;}
+  const msg = montarTextoSimulacao();
+  // remove markdown bold para texto limpo
+  const plain = msg.replace(/\*/g,'');
+  navigator.clipboard.writeText(plain).then(()=>{
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ COPIADO!';
+    setTimeout(()=>{ btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:currentColor;flex-shrink:0"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> COPIAR SIMULAÇÃO'; }, 2200);
+    toast('✓ SIMULAÇÃO COPIADA!', true);
+  }).catch(()=>toast('⚠ Não foi possível copiar. Use EXPORTAR.'));
+}
+
+// ══════════════════════════════════════════════
+// ENCAMINHAR PEDIDO → WhatsApp cliente
+// ══════════════════════════════════════════════
+function encaminharPedido(){
+  const qty  = Math.max(1, parseInt(document.getElementById('impQty').value)||1);
+  const tier = getTierImp(qty);
+  if(modoUniv && qty < UNIV_MIN_PAGS){toast('⚠ Mínimo 20 páginas para universitário!');return;}
 
   const tipoLabel={
     frente:       'Somente Frente Colorida',
@@ -829,97 +897,28 @@ function addImp(){
     fev_black:    'Frente e Verso P&B',
   }[tipoSel];
 
-  const linhas=[{label:`Impressão ${tipoLabel} · ${qty} pág × ${brl(unit)}`, val:totalImp}];
-  let total=totalImp;
+  const unit     = getUnit(tipoSel, tier);
+  const totalImp = unit * qty;
+  const modoLabel= modoUniv ? '🎓 Universitário' : '👤 Cliente Comum';
+
+  let msg=`🖨️ *Olá, Cyber Graphix!*\n\n`;
+  msg+=`Quero fazer um pedido:\n\n`;
+  msg+=`📄 *Tipo:* ${tipoLabel}\n`;
+  msg+=`📃 *Quantidade:* ${qty} páginas\n`;
+  msg+=`👤 *Modalidade:* ${modoLabel}\n`;
+  msg+=`💰 *Impressão:* ${brl(totalImp)} (${qty} × ${brl(unit)})\n`;
 
   if(encOn){
-    const folhas  = pagToFolhas(qty, tipoSel);
-    const encTier = getTierEnc(folhas);
-    const encPreco= encTier ? encTier.preco : 0;
-    const info    = isFev(tipoSel) ? ` (${qty} pág ÷ 2 = ${folhas} folhas)` : ` (${folhas} folhas)`;
-    linhas.push({label:`Encadernação${info} · faixa ${encTier.de}${encTier.ate?'–'+encTier.ate:'+'}`, val:encPreco});
-    total+=encPreco;
+    const folhas   = pagToFolhas(qty, tipoSel);
+    const encTier  = getTierEnc(folhas);
+    const encPreco = encTier ? encTier.preco : 0;
+    const info     = isFev(tipoSel) ? ` (${qty}pág÷2=${folhas}fls)` : ` (${folhas}fls)`;
+    msg+=`📎 *Encadernação${info}:* ${brl(encPreco)}\n`;
+    msg+=`💰 *Total estimado:* ${brl(totalImp+encPreco)}\n`;
   }
 
-  const desc=`🖨️ ${tipoLabel}${encOn?' + 📎 Encadernação':''} · ${qty} pág${obs?' ('+obs+')':''}`;
-  items.push({desc, total, linhas});
-  renderSum();
-  toast('✓ ITEM ADICIONADO!',true);
-  document.getElementById('resumo').scrollIntoView({behavior:'smooth'});
-}
-
-function addEnc(){
-  const folhas = Math.max(1, parseInt(document.getElementById('encQty').value)||1);
-  const tier   = getTierEnc(folhas);
-  if(!tier){toast('⚠ Tabela de encadernação não carregada!');return;}
-
-  const obs=document.getElementById('encObs').value.trim();
-  items.push({
-    desc:`📎 Encadernação avulsa · ${folhas} folha${folhas!==1?'s':''}${obs?' ('+obs+')':''}`,
-    total: tier.preco,
-    linhas:[{label:`Encadernação · faixa ${tier.de}${tier.ate?'–'+tier.ate:'+'}`, val:tier.preco}]
-  });
-  renderSum();
-  toast('✓ ITEM ADICIONADO!',true);
-  document.getElementById('resumo').scrollIntoView({behavior:'smooth'});
-}
-
-// ══════════════════════════════════════════════
-// RENDER SUMMARY
-// ══════════════════════════════════════════════
-function renderSum(){
-  const el    =document.getElementById('sumItems');
-  const totRow=document.getElementById('sumTotalRow');
-  if(!items.length){
-    el.innerHTML='<p class="empty-msg">&gt; nenhum item adicionado ainda...</p>';
-    totRow.style.display='none';
-    return;
-  }
-  let grand=0;
-  el.innerHTML=items.map((it,i)=>{
-    grand+=it.total;
-    return `<div class="sum-item">
-      <div class="sum-item-header">
-        <div class="sum-item-name">${it.desc}</div>
-        <div class="sum-item-right">
-          <span class="sum-item-val">${brl(it.total)}</span>
-          <button class="sum-item-del" onclick="removeItem(${i})">✕</button>
-        </div>
-      </div>
-      <div class="sum-item-lines">
-        ${it.linhas.map(l=>`<div class="sum-item-line">▸ ${l.label}: <span>${brl(l.val)}</span></div>`).join('')}
-      </div>
-    </div>`;
-  }).join('');
-  totRow.style.display='flex';
-  document.getElementById('totVal').textContent=brl(grand);
-}
-
-function removeItem(i){items.splice(i,1);renderSum();}
-function clearAll(){
-  if(items.length&&!confirm('Limpar todo o orçamento?'))return;
-  items=[];renderSum();toast('Orçamento limpo!');
-}
-
-// ══════════════════════════════════════════════
-// WHATSAPP
-// ══════════════════════════════════════════════
-function sendWpp(){
-  if(!items.length){toast('⚠ Seu orçamento está vazio!');return;}
-  const nome =document.getElementById('clienteNome').value.trim();
-  const grand=items.reduce((a,b)=>a+b.total,0);
-
-  let msg='🖨️ *Olá, Cyber Graphix!*\n';
-  if(nome)msg+=`👤 *Nome:* ${nome}\n`;
-  msg+='\n*📋 ORÇAMENTO — IMPRESSÃO & ENCADERNAÇÃO*\n';
-  msg+='━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
-  items.forEach((it,i)=>{
-    msg+=`\n*${i+1}.* ${it.desc}\n`;
-    it.linhas.forEach(l=>{msg+=`   ▸ ${l.label}: *${brl(l.val)}*\n`;});
-    if(it.linhas.length>1)msg+=`   💰 Subtotal: *${brl(it.total)}*\n`;
-  });
-  msg+=`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-  msg+=`💰 *TOTAL: ${brl(grand)}*\n\nAguardo confirmação! 😊`;
+  if(modoUniv) msg+=`\n⚠️ _Estou ciente que precisarei comprovar meu vínculo universitário._\n`;
+  msg+=`\nAguardo confirmação! 😊`;
 
   window.open(`https://wa.me/${wppNum}?text=${encodeURIComponent(msg)}`,'_blank');
 }
@@ -929,11 +928,11 @@ function sendWpp(){
 // ══════════════════════════════════════════════
 function openAdmin(){
   document.getElementById('adminModal').classList.add('open');
-  if(adminLogged)showPainel();
+  if(adminLogged) showPainel();
 }
 function closeAdmin(){document.getElementById('adminModal').classList.remove('open');}
 function checkPass(){
-  const PASS='cybergraphix2025'; // troque aqui se quiser
+  const PASS='cybergraphix2025';
   if(document.getElementById('adminPassIn').value===PASS){
     adminLogged=true;showPainel();
     document.getElementById('adminPassErr').textContent='';
@@ -957,7 +956,6 @@ function readXlsx(file){
       const ws    =wb.Sheets[wsName];
       const rows  =XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
 
-      // Cabeçalho impressão (colunas A-F, índices 0-5)
       let hImp=-1;
       for(let i=0;i<rows.length;i++){
         const r=rows[i].map(c=>String(c).trim().toLowerCase());
@@ -974,7 +972,6 @@ function readXlsx(file){
       }
       if(!newImp.length)throw new Error('Nenhuma faixa de impressão encontrada após o cabeçalho.');
 
-      // Cabeçalho encadernação (colunas G-I, índices 7-9)
       let hEnc=-1;
       for(let i=0;i<rows.length;i++){
         const c7=String(rows[i][7]||'').trim().toLowerCase();
@@ -1014,8 +1011,7 @@ function readXlsx(file){
         <table class="prev-table">
           <thead><tr><th>De (folhas)</th><th>Até (folhas)</th><th>Preço</th></tr></thead>
           <tbody>${newEnc.map(r=>`<tr><td>${r.de}</td><td>${r.ate||'+'}</td><td>${brl(r.preco)}</td></tr>`).join('')}</tbody>
-        </table>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:.68rem;color:rgba(255,234,0,.75);margin-top:8px;">Perfuração avulsa: ${brl(newPerf)}</p>`:''}`;
+        </table>`:''}`;
       document.getElementById('applyBtn').style.display='block';
 
     }catch(err){
