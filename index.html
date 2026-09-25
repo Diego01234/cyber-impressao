@@ -118,6 +118,34 @@ input::placeholder{color:rgba(74,96,128,.5);}
 .btn-export{display:flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#25d366;border:1px solid rgba(37,211,102,.3);background:rgba(37,211,102,.05);padding:9px 18px;cursor:pointer;transition:all .2s;margin:14px 0 18px;}
 .btn-export:hover{border-color:#25d366;background:rgba(37,211,102,.1);}
 
+/* MODO CLIENTE (comum / universitário) */
+.client-mode-bar{display:flex;gap:0;margin-bottom:20px;border:1px solid rgba(0,245,255,.15);overflow:hidden;}
+.cmode-btn{flex:1;font-family:'Orbitron',monospace;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:11px 8px;cursor:pointer;border:none;background:transparent;color:var(--dim);transition:all .2s;text-align:center;}
+.cmode-btn.active.comum{background:rgba(0,245,255,.1);color:var(--cyan);}
+.cmode-btn.active.univ{background:rgba(155,0,255,.15);color:#c07fff;}
+.cmode-btn:not(.active):hover{background:rgba(255,255,255,.04);}
+
+/* BANNER UNIVERSITÁRIO */
+.univ-banner{display:none;margin-bottom:16px;padding:12px 16px;background:rgba(155,0,255,.07);border:1px solid rgba(155,0,255,.28);}
+.univ-banner.show{display:block;}
+.univ-banner-title{font-family:'Orbitron',monospace;font-size:.72rem;font-weight:700;color:#c07fff;margin-bottom:6px;letter-spacing:.08em;}
+.univ-banner-text{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:rgba(232,244,255,.65);line-height:1.75;}
+.univ-banner-text strong{color:#c07fff;}
+
+/* TABELA UNIVERSITÁRIO na seção de preços */
+.ptable-card.purp::before{background:linear-gradient(to bottom,#9b00ff,var(--mag));}
+.ptable-card.purp::after{background:linear-gradient(90deg,#9b00ff,transparent);}
+.ptable.purp th{color:#c07fff;}
+.ptag-purp{color:#c07fff;font-weight:700;}
+.univ-table-wrap{display:none;margin-top:20px;}
+.univ-table-wrap.show{display:block;}
+
+/* TOGGLE IMP-ONLY vs IMP+ENC */
+.enc-mode-bar{display:flex;gap:0;margin-bottom:16px;border:1px solid rgba(255,0,170,.2);overflow:hidden;}
+.enc-mode-btn{flex:1;font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:9px 8px;cursor:pointer;border:none;background:transparent;color:var(--dim);transition:all .2s;text-align:center;}
+.enc-mode-btn.active{background:rgba(255,0,170,.1);color:var(--mag);}
+.enc-mode-btn:not(.active):hover{background:rgba(255,255,255,.03);}
+
 /* PRICE CARDS */
 .price-cards-label{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;}
 .price-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
@@ -301,6 +329,29 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
         </table>
       </div>
 
+      <!-- Botão para exibir/ocultar tabela universitária -->
+      <div style="grid-column:1/-1;display:flex;justify-content:flex-start;">
+        <button onclick="toggleUnivTable()" id="btnUnivTabela" style="font-family:'Orbitron',monospace;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c07fff;border:1px solid rgba(155,0,255,.35);padding:9px 20px;cursor:pointer;background:rgba(155,0,255,.07);transition:all .2s;margin-bottom:4px;">
+          🎓 VER PREÇOS PARA UNIVERSITÁRIOS
+        </button>
+      </div>
+
+      <!-- TABELA UNIVERSITÁRIO (oculta por padrão) -->
+      <div class="univ-table-wrap" id="univTableWrap" style="grid-column:1/-1;">
+        <div class="ptable-card purp">
+          <div class="ptable-icon">🎓</div>
+          <div class="ptable-name">Impressão — Universitário</div>
+          <table class="ptable purp">
+            <thead><tr><th>Qtd de páginas</th><th>Frente</th><th>F e V</th><th>F P&amp;B</th><th>F e V P&amp;B</th></tr></thead>
+            <tbody id="tbodyImpUniv"></tbody>
+          </table>
+          <div class="info-box" style="background:rgba(155,0,255,.05);border-left-color:rgba(155,0,255,.4);">
+            <strong style="color:#c07fff;">Válido a partir de 20 páginas.</strong><br>
+            <span style="color:var(--dim);">Cursos profissionalizantes, técnicos e faculdade. Sujeito à comprovação de vínculo.</span>
+          </div>
+        </div>
+      </div>
+
       <div class="ptable-card mag">
         <div class="ptable-icon">📎</div>
         <div class="ptable-name">Encadernação — valor por trabalho</div>
@@ -329,6 +380,27 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
     <!-- ══ IMPRESSÃO ══ -->
     <div class="mod-box" style="margin-bottom:24px;">
       <div class="mod-head">🖨️ IMPRESSÃO</div>
+
+      <!-- SELETOR CLIENTE COMUM / UNIVERSITÁRIO -->
+      <div class="client-mode-bar">
+        <button class="cmode-btn active comum" id="btnComum" onclick="setModo('comum')">👤 CLIENTE COMUM</button>
+        <button class="cmode-btn univ"          id="btnUniv"  onclick="setModo('univ')">🎓 UNIVERSITÁRIO</button>
+      </div>
+
+      <!-- BANNER AVISO UNIVERSITÁRIO -->
+      <div class="univ-banner" id="univBanner">
+        <div class="univ-banner-title">🎓 PREÇOS PARA UNIVERSITÁRIOS</div>
+        <div class="univ-banner-text">
+          Válido para <strong>cursos profissionalizantes, cursos técnicos e faculdade</strong>, a partir de <strong>20 páginas</strong>.<br>
+          ⚠️ Caso não seja possível comprovar vínculo universitário, será cobrado o valor de <strong>cliente comum</strong>.
+        </div>
+      </div>
+
+      <!-- TOGGLE: SOMENTE IMPRESSÃO / IMPRESSÃO + ENCADERNAÇÃO -->
+      <div class="enc-mode-bar">
+        <button class="enc-mode-btn active" id="encModeOff" onclick="setEncMode(false)">🖨️ SOMENTE IMPRESSÃO</button>
+        <button class="enc-mode-btn"        id="encModeOn"  onclick="setEncMode(true)">📎 IMPRESSÃO + ENCADERNAÇÃO</button>
+      </div>
 
       <!-- 1. QTD -->
       <div class="field" style="max-width:320px;">
@@ -425,22 +497,12 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
         faixa aplicada: <span id="impTierChip" style="color:var(--grn);"></span>
       </div>
 
-      <!-- toggle encadernação -->
-      <div class="enc-toggle" onclick="toggleEnc()">
-        <div class="toggle-sw" id="encSw"></div>
-        <div class="toggle-label">Adicionar <span class="hl">encadernação</span></div>
-      </div>
-
-      <!-- total geral -->
+      <!-- total geral (aparece quando impressão + encadernação está ativo) -->
       <div class="grand-box" id="impGrandBox">
         <div class="grand-lbl">total do pedido</div>
         <div class="grand-val" id="impGrandVal">—</div>
       </div>
 
-      <div class="field">
-        <label>observação (opcional)</label>
-        <input type="text" id="impObs" placeholder="ex: A4, 3 cópias...">
-      </div>
 
       <button class="btn-add" onclick="addImp()">+ ADICIONAR AO ORÇAMENTO</button>
     </div>
@@ -469,40 +531,10 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
         </div>
       </div>
 
-      <div class="field" style="max-width:420px;">
-        <label>observação (opcional)</label>
-        <input type="text" id="encObs" placeholder="ex: 1 via, trabalho de faculdade...">
-      </div>
 
       <button class="btn-add mag" style="max-width:420px;" onclick="addEnc()">+ ADICIONAR AO ORÇAMENTO</button>
     </div>
 
-  </div>
-</section>
-
-<!-- RESUMO -->
-<section id="resumo">
-  <div class="container">
-    <p class="sec-eye">// módulo 03 — orçamento</p>
-    <h2 class="sec-title">Resumo do Orçamento</h2>
-    <div class="divider"><span>◈ revise os itens e envie pelo WhatsApp ◈</span></div>
-
-    <div class="sum-box">
-      <div class="sum-title">▶ ITENS DO ORÇAMENTO</div>
-      <div id="sumItems"><p class="empty-msg">&gt; nenhum item adicionado ainda...</p></div>
-      <div id="sumTotalRow" style="display:none" class="sum-total">
-        <span class="tot-lbl">// total estimado</span>
-        <span class="tot-val" id="totVal">R$ 0,00</span>
-      </div>
-    </div>
-
-    <div class="sum-controls">
-      <div class="field field-nome">
-        <label>seu nome (opcional)</label>
-        <input type="text" id="clienteNome" placeholder="como você se chama?">
-      </div>
-      <button class="btn-clear" onclick="clearAll()">✕ LIMPAR TUDO</button>
-    </div>
   </div>
 </section>
 
@@ -601,6 +633,23 @@ const ENC_DEF = [
 ];
 const PERF_DEF = 6; // mantido apenas para leitura de xlsx legado
 
+// ════════════════════════════════════════════════════════════
+// ↓ TABELA UNIVERSITÁRIO — edite os valores aqui
+//   Desconto válido a partir de 20 páginas (faixa 1-19 existe
+//   só para exibição na tabela; a calculadora bloqueia abaixo
+//   de 20 págs no modo universitário automaticamente).
+// ════════════════════════════════════════════════════════════
+const IMP_UNIV = [
+  { de:1,   ate:19,  frente:2.00, fev:2.00, frente_black:1.00, fev_black:1.00 },
+  { de:20,  ate:25,  frente:1.20, fev:1.00, frente_black:0.60, fev_black:0.50 },
+  { de:26,  ate:50,  frente:1.00, fev:0.85, frente_black:0.50, fev_black:0.40 },
+  { de:51,  ate:100, frente:0.80, fev:0.65, frente_black:0.40, fev_black:0.32 },
+  { de:101, ate:150, frente:0.65, fev:0.50, frente_black:0.32, fev_black:0.25 },
+  { de:151, ate:250, frente:0.55, fev:0.40, frente_black:0.27, fev_black:0.21 },
+  { de:251, ate:null,frente:0.45, fev:0.35, frente_black:0.23, fev_black:0.18 },
+];
+// ════════════════════════════════════════════════════════════
+
 // ══════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════
@@ -611,6 +660,7 @@ let wppNum    = '5592994120494';
 let items     = [];
 let tipoSel   = 'frente';
 let encOn     = false;
+let modoUniv  = false;   // false = cliente comum, true = universitário
 let adminLogged = false;
 let pendingXlsx = null;
 
@@ -634,6 +684,7 @@ function saveStorage(){
 // RENDER TABLES
 // ══════════════════════════════════════════════
 function renderTables(){
+  // Tabela cliente comum
   document.getElementById('tbodyImp').innerHTML=impData.map(r=>`<tr>
     <td>${r.de}${r.ate?'–'+r.ate:'+'}</td>
     <td class="ptag">${brl(r.frente)}</td>
@@ -642,12 +693,57 @@ function renderTables(){
     <td class="ptag">${brl(r.fev_black)}</td>
   </tr>`).join('');
 
+  // Tabela universitário
+  document.getElementById('tbodyImpUniv').innerHTML=IMP_UNIV.map(r=>`<tr>
+    <td>${r.de}${r.ate?'–'+r.ate:'+'}</td>
+    <td class="ptag-purp">${brl(r.frente)}</td>
+    <td class="ptag-purp">${brl(r.fev)}</td>
+    <td class="ptag-purp">${brl(r.frente_black)}</td>
+    <td class="ptag-purp">${brl(r.fev_black)}</td>
+  </tr>`).join('');
+
+  // Tabela encadernação
   document.getElementById('tbodyEnc').innerHTML=encData.map(r=>`<tr>
     <td>${r.de}${r.ate?'–'+r.ate:'+'}</td>
     <td class="ptag-mag">${brl(r.preco)}</td>
   </tr>`).join('');
+}
 
+// ══════════════════════════════════════════════
+// MODO CLIENTE (comum / universitário)
+// ══════════════════════════════════════════════
+function setModo(modo){
+  modoUniv = (modo==='univ');
+  document.getElementById('btnComum').classList.toggle('active', !modoUniv);
+  document.getElementById('btnUniv').classList.toggle('active',  modoUniv);
+  document.getElementById('univBanner').classList.toggle('show', modoUniv);
+  calcImp();
+}
 
+// ══════════════════════════════════════════════
+// MODO ENC (somente impressão / impressão+enc)
+// ══════════════════════════════════════════════
+function setEncMode(on){
+  encOn = on;
+  document.getElementById('encModeOff').classList.toggle('active', !on);
+  document.getElementById('encModeOn').classList.toggle('active',   on);
+  // mantém compatibilidade com o toggle antigo (toggleEnc usa encSw)
+  const sw = document.getElementById('encSw');
+  if(sw) sw.classList.toggle('on', on);
+  document.getElementById('impGrandBox').classList.toggle('show', on);
+  calcImp();
+}
+
+// ══════════════════════════════════════════════
+// TOGGLE TABELA UNIVERSITÁRIA (seção de preços)
+// ══════════════════════════════════════════════
+function toggleUnivTable(){
+  const wrap = document.getElementById('univTableWrap');
+  const btn  = document.getElementById('btnUnivTabela');
+  const visible = wrap.classList.toggle('show');
+  btn.textContent = visible
+    ? '🎓 OCULTAR PREÇOS UNIVERSITÁRIOS'
+    : '🎓 VER PREÇOS PARA UNIVERSITÁRIOS';
 }
 
 // ══════════════════════════════════════════════
@@ -700,8 +796,14 @@ function calcImp(){
   const tierLine = document.getElementById('impTierLine');
   if(tier){
     tierLine.style.display='block';
-    document.getElementById('impTierChip').textContent=
-      `${tier.de}${tier.ate?'–'+tier.ate:'+'} páginas`;
+    const chip = document.getElementById('impTierChip');
+    if(modoUniv){
+      chip.textContent = `🎓 ${tier.de}${tier.ate?'–'+tier.ate:'+'} páginas (universitário)`;
+      chip.style.color = '#c07fff';
+    } else {
+      chip.textContent = `${tier.de}${tier.ate?'–'+tier.ate:'+'} páginas`;
+      chip.style.color = 'var(--grn)';
+    }
   } else {
     tierLine.style.display='none';
   }
@@ -732,7 +834,9 @@ function exportSimulacao(){
     {key:'fev_black',    nome:'4 - Frente e Verso P&B'},
   ];
 
+  const modoLabel = modoUniv ? '🎓 Universitário' : '👤 Cliente Comum';
   let msg=`*SIMULAÇÃO DE PREÇOS — ${qty} páginas*\n`;
+  msg+=`👤 Modalidade: ${modoLabel}\n`;
   msg+=`Faixa: ${tier.de}${tier.ate?'–'+tier.ate:'+'} páginas\n`;
   msg+='━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
 
@@ -772,8 +876,9 @@ function toggleEnc(){
 // HELPERS
 // ══════════════════════════════════════════════
 function getTierImp(qty){
-  let m=impData[0];
-  for(const t of impData){if(qty>=t.de)m=t;}
+  const tabela = modoUniv ? IMP_UNIV : impData;
+  let m=tabela[0];
+  for(const t of tabela){if(qty>=t.de)m=t;}
   return m;
 }
 function getTierEnc(folhas){
@@ -799,6 +904,8 @@ function calcEnc(){
 // QTY CONTROLS
 // ══════════════════════════════════════════════
 function chQty(id, delta){
+  // suporta tanto chQty('impQty', 1) quanto chQty(-1) via onclick herdado
+  if(typeof id === 'number'){ delta=id; id='impQty'; }
   const el=document.getElementById(id);
   el.value=Math.max(1,(parseInt(el.value)||1)+delta);
   calcImp();
