@@ -55,7 +55,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(5,8,16,.93);
 
 /* SECTIONS */
 section{padding:60px 20px;position:relative;z-index:1;}
-.container{max-width:1000px;margin:0 auto;}
+.container{max-width:1400px;margin:0 auto;}
 .sec-eye{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--cyan);letter-spacing:.3em;margin-bottom:5px;opacity:.65;text-transform:uppercase;}
 .sec-title{font-family:'Orbitron',monospace;font-size:clamp(1.25rem,3.2vw,1.9rem);font-weight:700;margin-bottom:4px;background:linear-gradient(90deg,var(--w),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .divider{display:flex;align-items:center;gap:12px;margin:14px 0 32px;}
@@ -64,19 +64,21 @@ section{padding:60px 20px;position:relative;z-index:1;}
 
 /* PRICE TABLES */
 #precos{background:var(--bg2);}
-.tables-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px;}
+.tables-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:10px;}
+@media(max-width:900px){.tables-wrap{grid-template-columns:1fr; 1fr;}}
 @media(max-width:680px){.tables-wrap{grid-template-columns:1fr;}}
+
 .ptable-card{background:var(--gb);border:1px solid var(--bc);padding:22px 20px;position:relative;overflow:hidden;}
 .ptable-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--cyan),var(--purp));}
 .ptable-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--cyan),transparent);}
 .ptable-card.mag::before{background:linear-gradient(to bottom,var(--mag),var(--purp));}
 .ptable-card.mag::after{background:linear-gradient(90deg,var(--mag),transparent);}
 .ptable-icon{font-size:1.6rem;margin-bottom:8px;}
-.ptable-name{font-family:'Orbitron',monospace;font-size:.85rem;font-weight:700;color:var(--w);margin-bottom:12px;letter-spacing:.05em;}
-.ptable{width:100%;border-collapse:collapse;font-family:'Share Tech Mono',monospace;font-size:.72rem;}
-.ptable th{color:var(--cyan);padding:5px 7px;border-bottom:1px solid var(--bc);text-align:left;letter-spacing:.07em;font-size:.63rem;text-transform:uppercase;}
+.ptable-name{font-family:'Orbitron',monospace;font-size:.95rem;font-weight:700;color:var(--w);margin-bottom:12px;letter-spacing:.05em;}
+.ptable{width:100%;border-collapse:collapse;font-family:'Share Tech Mono',monospace;font-size:.85rem;}
+.ptable th{color:var(--cyan);padding:8px 10px;border-bottom:1px solid var(--bc);text-align:left;letter-spacing:.07em;font-size:.70rem;text-transform:uppercase;}
 .ptable.mag th{color:var(--mag);}
-.ptable td{color:rgba(232,244,255,.75);padding:5px 7px;border-bottom:1px solid rgba(0,245,255,.05);}
+.ptable td{color:rgba(232,244,255,.75);padding:8px 10px;border-bottom:1px solid rgba(0,245,255,.05);}
 .ptable tr:last-child td{border-bottom:none;}
 .ptable tr:hover td{background:rgba(0,245,255,.04);}
 .ptag{color:var(--grn);font-weight:700;}
@@ -193,76 +195,6 @@ input::placeholder{color:rgba(74,96,128,.5);}
 .lb-detail{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--dim);margin-top:2px;}
 .tier-chip{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:.6rem;padding:2px 8px;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:var(--grn);margin-top:4px;letter-spacing:.06em;}
 
-/* grand total */
-.grand-box{display:none;padding:14px 16px;background:rgba(255,234,0,.04);border:1px solid rgba(255,234,0,.25);margin-bottom:14px;}
-.grand-box.show{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-.grand-lbl{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:rgba(255,234,0,.7);letter-spacing:.1em;text-transform:uppercase;}
-.grand-val{font-family:'Orbitron',monospace;font-size:1.55rem;font-weight:900;color:var(--yel);text-shadow:0 0 20px rgba(255,234,0,.5);}
-
-/* add btn */
-.btn-add{font-family:'Orbitron',monospace;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:linear-gradient(90deg,var(--cyan),var(--purp));border:none;padding:12px 28px;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all .2s;width:100%;}
-.btn-add:hover{box-shadow:0 0 28px rgba(0,245,255,.4);transform:translateY(-2px);}
-.btn-add.mag{background:linear-gradient(90deg,var(--mag),var(--purp));}
-.btn-add.mag:hover{box-shadow:0 0 28px rgba(255,0,170,.4);}
-
-/* SUMMARY */
-#resumo{background:var(--bg2);}
-.sum-box{background:var(--gm);border:1px solid var(--bm);padding:28px;position:relative;margin-bottom:20px;}
-.sum-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--mag),var(--cyan),var(--mag));}
-.sum-title{font-family:'Orbitron',monospace;font-size:.88rem;font-weight:700;color:var(--mag);margin-bottom:20px;letter-spacing:.1em;text-shadow:0 0 16px rgba(255,0,170,.4);}
-.sum-item{padding:10px 0;border-bottom:1px solid rgba(0,245,255,.07);}
-.sum-item:last-child{border-bottom:none;}
-.sum-item-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px;}
-.sum-item-name{font-family:'Share Tech Mono',monospace;font-size:.78rem;color:var(--w);flex:1;}
-.sum-item-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
-.sum-item-val{font-family:'Orbitron',monospace;font-size:.9rem;color:var(--cyan);}
-.sum-item-del{background:none;border:none;color:var(--dim);cursor:pointer;font-size:.9rem;transition:color .15s;padding:2px 4px;}
-.sum-item-del:hover{color:var(--mag);}
-.sum-item-lines{padding-left:10px;}
-.sum-item-line{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--dim);line-height:1.9;}
-.sum-item-line span{color:var(--cyan);}
-.sum-total{display:flex;justify-content:space-between;align-items:center;padding-top:18px;margin-top:8px;border-top:1px solid var(--bm);}
-.tot-lbl{font-family:'Orbitron',monospace;font-size:.72rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;}
-.tot-val{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--yel);text-shadow:0 0 22px rgba(255,234,0,.55);}
-.empty-msg{text-align:center;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:.8rem;padding:22px 0;letter-spacing:.05em;}
-.sum-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;}
-.field-nome{flex:1;min-width:200px;}
-.btn-clear{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:10px 18px;cursor:pointer;border:1px solid rgba(255,68,68,.35);background:transparent;color:rgba(255,68,68,.7);transition:all .2s;white-space:nowrap;}
-.btn-clear:hover{border-color:#ff4444;color:#ff4444;}
-
-/* WPP */
-.wpp-section{background:var(--bg);padding:60px 20px;text-align:center;border-top:1px solid rgba(0,245,255,.07);position:relative;z-index:1;}
-.wpp-note{font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--dim);margin-bottom:24px;letter-spacing:.04em;line-height:1.8;}
-.btn-wpp{background:linear-gradient(90deg,#00c853,#25d366);color:#fff;border:none;padding:17px 48px;font-family:'Orbitron',monospace;font-size:.8rem;font-weight:700;letter-spacing:.14em;cursor:pointer;display:inline-flex;align-items:center;gap:12px;clip-path:polygon(14px 0%,100% 0%,calc(100% - 14px) 100%,0% 100%);box-shadow:0 0 36px rgba(37,211,102,.38);transition:all .25s;text-transform:uppercase;}
-.btn-wpp:hover{box-shadow:0 0 64px rgba(37,211,102,.62);transform:translateY(-4px);}
-.btn-wpp svg{width:20px;height:20px;fill:#fff;}
-
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.87);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;}
-.modal-overlay.open{display:flex;}
-.modal{background:var(--bg2);border:1px solid var(--bc);padding:30px;max-width:620px;width:100%;position:relative;max-height:90vh;overflow-y:auto;}
-.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--mag));}
-.modal-title{font-family:'Orbitron',monospace;font-size:.95rem;font-weight:700;color:var(--cyan);margin-bottom:22px;letter-spacing:.1em;}
-.modal-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--dim);font-size:1.3rem;cursor:pointer;}
-.modal-close:hover{color:var(--mag);}
-.adm-sec{background:rgba(0,245,255,.02);border:1px solid var(--bc);padding:20px;margin-bottom:16px;}
-.adm-sec-title{font-family:'Orbitron',monospace;font-size:.72rem;font-weight:700;color:var(--cyan);margin-bottom:12px;letter-spacing:.1em;}
-.upload-area{border:2px dashed rgba(0,245,255,.25);padding:28px;text-align:center;cursor:pointer;transition:all .2s;}
-.upload-area:hover{border-color:var(--cyan);background:rgba(0,245,255,.04);}
-.upload-icon{font-size:1.8rem;margin-bottom:6px;}
-.upload-label{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--dim);line-height:1.6;}
-.upload-label strong{color:var(--cyan);}
-.parse-ok{margin-top:12px;font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--grn);background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.2);padding:10px 12px;}
-.parse-err{margin-top:12px;font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--mag);background:rgba(255,0,170,.05);border:1px solid var(--bm);padding:10px 12px;}
-.prev-wrap{margin-top:12px;overflow-x:auto;}
-.prev-table{width:100%;border-collapse:collapse;font-family:'Share Tech Mono',monospace;font-size:.68rem;}
-.prev-table th{color:var(--cyan);padding:4px 8px;border-bottom:1px solid var(--bc);text-align:left;}
-.prev-table td{color:rgba(232,244,255,.7);padding:4px 8px;border-bottom:1px solid rgba(0,245,255,.05);}
-.btn-admin{font-family:'Orbitron',monospace;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:linear-gradient(90deg,var(--cyan),var(--purp));border:none;padding:10px 24px;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all .2s;width:100%;margin-top:14px;}
-.btn-admin:hover{box-shadow:0 0 28px rgba(0,245,255,.35);}
-.btn-danger{background:linear-gradient(90deg,#ff4444,#aa0000);}
-.adm-field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
-.adm-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;}
 
 /* TOAST */
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--bg2);border:1px solid var(--mag);color:var(--mag);padding:11px 26px;font-family:'Share Tech Mono',monospace;font-size:.78rem;letter-spacing:.05em;transition:transform .3s;z-index:10000;pointer-events:none;}
@@ -283,12 +215,10 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">CYBER<span style="color:var(--mag)">GRAPHIX</span></div>
+  <div class="nav-brand">CYBER<span style="color:var(--mag)"> GRAPHIX</span></div>
   <div class="nav-links">
-    <a href="#precos">Tabela</a>
+    <a href="#precos">Tabelas</a>
     <a href="#calculadora">Calculadora</a>
-    <a href="#resumo">Orçamento</a>
-    <button class="nav-admin-btn" onclick="openAdmin()">⚙ ADMIN</button>
   </div>
 </nav>
 
@@ -315,8 +245,8 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
 <!-- TABELA DE PREÇOS -->
 <section id="precos">
   <div class="container">
-    <p class="sec-eye">// módulo 01 — tabela de preços</p>
-    <h2 class="sec-title">Tabela de Preços</h2>
+    <p class="sec-eye">// módulo 01 — tabelas de preços</p>
+    <h2 class="sec-title">Tabelas de Preços</h2>
     <div class="divider"><span>◈ quanto mais você imprime, mais barato fica ◈</span></div>
     <div class="tables-wrap">
 
@@ -327,29 +257,6 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
           <thead><tr><th>Qtd de páginas</th><th>Frente</th><th>F e V</th><th>F P&amp;B</th><th>F e V P&amp;B</th></tr></thead>
           <tbody id="tbodyImp"></tbody>
         </table>
-      </div>
-
-      <!-- Botão para exibir/ocultar tabela universitária -->
-      <div style="grid-column:1/-1;display:flex;justify-content:flex-start;">
-        <button onclick="toggleUnivTable()" id="btnUnivTabela" style="font-family:'Orbitron',monospace;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c07fff;border:1px solid rgba(155,0,255,.35);padding:9px 20px;cursor:pointer;background:rgba(155,0,255,.07);transition:all .2s;margin-bottom:4px;">
-          🎓 VER PREÇOS PARA UNIVERSITÁRIOS
-        </button>
-      </div>
-
-      <!-- TABELA UNIVERSITÁRIO (oculta por padrão) -->
-      <div class="univ-table-wrap" id="univTableWrap" style="grid-column:1/-1;">
-        <div class="ptable-card purp">
-          <div class="ptable-icon">🎓</div>
-          <div class="ptable-name">Impressão — Universitário</div>
-          <table class="ptable purp">
-            <thead><tr><th>Qtd de páginas</th><th>Frente</th><th>F e V</th><th>F P&amp;B</th><th>F e V P&amp;B</th></tr></thead>
-            <tbody id="tbodyImpUniv"></tbody>
-          </table>
-          <div class="info-box" style="background:rgba(155,0,255,.05);border-left-color:rgba(155,0,255,.4);">
-            <strong style="color:#c07fff;">Válido a partir de 20 páginas.</strong><br>
-            <span style="color:var(--dim);">Cursos profissionalizantes, técnicos e faculdade. Sujeito à comprovação de vínculo.</span>
-          </div>
-        </div>
       </div>
 
       <div class="ptable-card mag">
@@ -366,6 +273,23 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
 
       </div>
 
+    
+      <div class="ptable-card purp">
+        <div class="ptable-icon">🎓</div>
+        <div class="ptable-name">Impressão — Universitário</div>
+        <table class="ptable purp">
+          <thead><tr><th>Qtd de páginas</th><th>Frente</th><th>F e V</th><th>F P&amp;B</th><th>F e V P&amp;B</th></tr></thead>
+          <tbody id="tbodyImpUniv"></tbody>
+        </table>
+        <div class="info-box" style="background:rgba(155,0,255,.05);border-left-color:rgba(155,0,255,.4);">
+          <strong style="color:#c07fff;">Válido a partir de 20 páginas.</strong><br>
+          <span style="color:var(--dim);">Cursos profissionalizantes, técnicos e faculdade. Sujeito à comprovação de vínculo.</span>
+        </div>
+      </div>
+      
+
+      
+
     </div>
   </div>
 </section>
@@ -381,7 +305,17 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
     <div class="mod-box" style="margin-bottom:24px;">
       <div class="mod-head">🖨️ IMPRESSÃO</div>
 
-      <!-- SELETOR CLIENTE COMUM / UNIVERSITÁRIO -->
+      <!-- 1. QTD -->
+      <div class="field" style="max-width:320px;margin-left: auto;margin-right: auto;">
+        <label>quantidade de páginas</label>
+        <div class="qty-row">
+          <button class="qty-btn" onclick="chQty('impQty',-1)">−</button>
+          <input  class="qty-in"  type="number" id="impQty" value="1" min="1" oninput="calcImp()">
+          <button class="qty-btn" onclick="chQty('impQty',1)">+</button>
+        </div>
+      </div>
+
+ <!-- SELETOR CLIENTE COMUM / UNIVERSITÁRIO -->
       <div class="client-mode-bar">
         <button class="cmode-btn active comum" id="btnComum" onclick="setModo('comum')">👤 CLIENTE COMUM</button>
         <button class="cmode-btn univ"          id="btnUniv"  onclick="setModo('univ')">🎓 UNIVERSITÁRIO</button>
@@ -402,16 +336,7 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
         <button class="enc-mode-btn"        id="encModeOn"  onclick="setEncMode(true)">📎 IMPRESSÃO + ENCADERNAÇÃO</button>
       </div>
 
-      <!-- 1. QTD -->
-      <div class="field" style="max-width:320px;">
-        <label>quantidade de páginas</label>
-        <div class="qty-row">
-          <button class="qty-btn" onclick="chQty('impQty',-1)">−</button>
-          <input  class="qty-in"  type="number" id="impQty" value="1" min="1" oninput="calcImp()">
-          <button class="qty-btn" onclick="chQty('impQty',1)">+</button>
-        </div>
-      </div>
-
+     
       <!-- 2. CARDS com preços + checkbox -->
       <div class="price-cards-label">Selecione o tipo de impressão:</div>
       <div class="price-cards" id="priceCards">
@@ -496,61 +421,9 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
       <div id="impTierLine" style="font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--dim);margin:10px 0 16px;display:none;">
         faixa aplicada: <span id="impTierChip" style="color:var(--grn);"></span>
       </div>
-
-      <!-- total geral (aparece quando impressão + encadernação está ativo) -->
-      <div class="grand-box" id="impGrandBox">
-        <div class="grand-lbl">total do pedido</div>
-        <div class="grand-val" id="impGrandVal">—</div>
-      </div>
-
-
-      <button class="btn-add" onclick="addImp()">+ ADICIONAR AO ORÇAMENTO</button>
-    </div>
-
-    <!-- ══ ENCADERNAÇÃO AVULSA ══ -->
-    <div class="mod-box mag">
-      <div class="mod-head">📎 ENCADERNAÇÃO AVULSA</div>
-      <p style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--dim);margin-bottom:18px;line-height:1.75;">
-        Para encadernar documentos já impressos. Inclui perfuração, espiral, capa e fundo — apostila completa.
-      </p>
-
-      <div class="field" style="max-width:320px;">
-        <label>número de folhas físicas</label>
-        <div class="qty-row">
-          <button class="qty-btn mag" onclick="chQtyEnc(-1)">−</button>
-          <input  class="qty-in mag" type="number" id="encQty" value="10" min="1" oninput="calcEnc()">
-          <button class="qty-btn mag" onclick="chQtyEnc(1)">+</button>
-        </div>
-      </div>
-
-      <div class="live-box" style="border-color:rgba(255,0,170,.15);background:rgba(255,0,170,.03);max-width:420px;">
-        <div class="lb-group">
-          <div class="lb-lbl">total encadernação</div>
-          <div class="lb-val" id="encTotalVal">—</div>
-          <div class="lb-detail" id="encDetail"></div>
-        </div>
-      </div>
-
-
-      <button class="btn-add mag" style="max-width:420px;" onclick="addEnc()">+ ADICIONAR AO ORÇAMENTO</button>
-    </div>
-
-  </div>
+    
 </section>
 
-<!-- WHATSAPP -->
-<div class="wpp-section">
-  <div class="container">
-    <p class="wpp-note">
-      Orçamento pronto? Envie direto para o WhatsApp da Cyber Graphix!<br>
-      <span style="color:var(--cyan);">(92) 9 9412-0494</span> — Diego
-    </p>
-    <button class="btn-wpp" onclick="sendWpp()">
-      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      ENVIAR ORÇAMENTO
-    </button>
-  </div>
-</div>
 
 <footer>
   <span class="bc">CYBER GRAPHIX</span> &nbsp;◈&nbsp; impressão &amp; encadernação &nbsp;◈&nbsp; feito com <span class="bm">♥</span> em BVR
@@ -559,54 +432,7 @@ footer .bc{color:var(--cyan);}footer .bm{color:var(--mag);}
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div class="toast" id="toast"></div>
 
-<!-- MODAL ADMIN -->
-<div class="modal-overlay" id="adminModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeAdmin()">✕</button>
-    <div class="modal-title">⚙ PAINEL ADMINISTRATIVO</div>
 
-    <div id="adminLoginBox">
-      <div class="adm-sec">
-        <div class="adm-sec-title">🔐 ACESSO</div>
-        <div class="adm-field">
-          <div class="adm-label">senha do painel</div>
-          <input type="password" id="adminPassIn" placeholder="senha..." onkeydown="if(event.key==='Enter')checkPass()">
-        </div>
-        <div id="adminPassErr" style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--mag);min-height:16px;margin-bottom:6px;"></div>
-        <button class="btn-admin" onclick="checkPass()">▶ ENTRAR</button>
-      </div>
-    </div>
-
-    <div id="adminPainel" style="display:none">
-      <div class="adm-sec">
-        <div class="adm-sec-title">📊 ATUALIZAR PLANILHA DE PREÇOS</div>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--dim);margin-bottom:12px;line-height:1.75;">
-          Envie o <strong style="color:var(--cyan)">.xlsx</strong> — o sistema lê a aba <strong style="color:var(--cyan)">"Dados"</strong> automaticamente.<br>
-          Impressão: <strong style="color:var(--cyan)">De · Unid · Frente · F e V · F Black · F e V Black</strong><br>
-          Encadernação: <strong style="color:var(--mag)">De · Folhas · Preço</strong> (lado direito da mesma aba)
-        </p>
-        <div class="upload-area" onclick="document.getElementById('xlsxIn').click()">
-          <div class="upload-icon">📂</div>
-          <div class="upload-label"><strong>Clique para selecionar</strong> ou arraste aqui<br>Aceito: .xlsx · .xlsm · .xls</div>
-        </div>
-        <input type="file" id="xlsxIn" accept=".xlsx,.xlsm,.xls" style="display:none" onchange="readXlsx(this.files[0])">
-        <div id="xlsxMsg" style="display:none"></div>
-        <div id="xlsxPrev" style="display:none" class="prev-wrap"></div>
-        <button class="btn-admin" id="applyBtn" style="display:none" onclick="applyXlsx()">⚡ APLICAR NOVOS PREÇOS</button>
-      </div>
-
-      <div class="adm-sec">
-        <div class="adm-sec-title">📱 CONFIGURAÇÕES</div>
-        <div class="adm-field">
-          <div class="adm-label">número WhatsApp (só números com 55 e DDD)</div>
-          <input type="text" id="wppIn" placeholder="ex: 5592994120494">
-        </div>
-        <button class="btn-admin" onclick="saveConf()">💾 SALVAR</button>
-        <button class="btn-admin btn-danger" style="margin-top:8px" onclick="resetData()">🗑️ RESETAR PARA PADRÃO</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
 // ══════════════════════════════════════════════
@@ -727,24 +553,10 @@ function setEncMode(on){
   encOn = on;
   document.getElementById('encModeOff').classList.toggle('active', !on);
   document.getElementById('encModeOn').classList.toggle('active',   on);
-  // mantém compatibilidade com o toggle antigo (toggleEnc usa encSw)
-  const sw = document.getElementById('encSw');
-  if(sw) sw.classList.toggle('on', on);
-  document.getElementById('impGrandBox').classList.toggle('show', on);
+ 
   calcImp();
 }
 
-// ══════════════════════════════════════════════
-// TOGGLE TABELA UNIVERSITÁRIA (seção de preços)
-// ══════════════════════════════════════════════
-function toggleUnivTable(){
-  const wrap = document.getElementById('univTableWrap');
-  const btn  = document.getElementById('btnUnivTabela');
-  const visible = wrap.classList.toggle('show');
-  btn.textContent = visible
-    ? '🎓 OCULTAR PREÇOS UNIVERSITÁRIOS'
-    : '🎓 VER PREÇOS PARA UNIVERSITÁRIOS';
-}
 
 // ══════════════════════════════════════════════
 // TIPO — radio version
@@ -808,15 +620,7 @@ function calcImp(){
     tierLine.style.display='none';
   }
 
-  // grand total do tipo selecionado (com enc)
-  if(encOn && tier){
-    const unit     = tier[tipoSel];
-    const totalImp = unit * qty;
-    const folhas   = pagToFolhas(qty, tipoSel);
-    const encTier  = getTierEnc(folhas);
-    const encPreco = encTier ? encTier.preco : 0;
-    document.getElementById('impGrandVal').textContent = brl(totalImp + encPreco);
-  }
+  
 }
 
 // ══════════════════════════════════════════════
@@ -868,7 +672,6 @@ function exportSimulacao(){
 function toggleEnc(){
   encOn=!encOn;
   document.getElementById('encSw').classList.toggle('on',encOn);
-  document.getElementById('impGrandBox').classList.toggle('show',encOn);
   calcImp();
 }
 
@@ -916,59 +719,8 @@ function chQtyEnc(delta){
   calcEnc();
 }
 
-// ══════════════════════════════════════════════
-// ADD ITEMS
-// ══════════════════════════════════════════════
-function addImp(){
-  const qty  = Math.max(1, parseInt(document.getElementById('impQty').value)||1);
-  const tier = getTierImp(qty);
-  if(!tier){toast('⚠ Tabela de impressão não carregada!');return;}
 
-  const unit    = tier[tipoSel];
-  const totalImp= unit * qty;
-  const obs     = document.getElementById('impObs').value.trim();
 
-  const tipoLabel={
-    frente:       'Somente Frente Colorida',
-    fev:          'Frente e Verso Colorida',
-    frente_black: 'Somente Frente P&B',
-    fev_black:    'Frente e Verso P&B',
-  }[tipoSel];
-
-  const linhas=[{label:`Impressão ${tipoLabel} · ${qty} pág × ${brl(unit)}`, val:totalImp}];
-  let total=totalImp;
-
-  if(encOn){
-    const folhas  = pagToFolhas(qty, tipoSel);
-    const encTier = getTierEnc(folhas);
-    const encPreco= encTier ? encTier.preco : 0;
-    const info    = isFev(tipoSel) ? ` (${qty} pág ÷ 2 = ${folhas} folhas)` : ` (${folhas} folhas)`;
-    linhas.push({label:`Encadernação${info} · faixa ${encTier.de}${encTier.ate?'–'+encTier.ate:'+'}`, val:encPreco});
-    total+=encPreco;
-  }
-
-  const desc=`🖨️ ${tipoLabel}${encOn?' + 📎 Encadernação':''} · ${qty} pág${obs?' ('+obs+')':''}`;
-  items.push({desc, total, linhas});
-  renderSum();
-  toast('✓ ITEM ADICIONADO!',true);
-  document.getElementById('resumo').scrollIntoView({behavior:'smooth'});
-}
-
-function addEnc(){
-  const folhas = Math.max(1, parseInt(document.getElementById('encQty').value)||1);
-  const tier   = getTierEnc(folhas);
-  if(!tier){toast('⚠ Tabela de encadernação não carregada!');return;}
-
-  const obs=document.getElementById('encObs').value.trim();
-  items.push({
-    desc:`📎 Encadernação avulsa · ${folhas} folha${folhas!==1?'s':''}${obs?' ('+obs+')':''}`,
-    total: tier.preco,
-    linhas:[{label:`Encadernação · faixa ${tier.de}${tier.ate?'–'+tier.ate:'+'}`, val:tier.preco}]
-  });
-  renderSum();
-  toast('✓ ITEM ADICIONADO!',true);
-  document.getElementById('resumo').scrollIntoView({behavior:'smooth'});
-}
 
 // ══════════════════════════════════════════════
 // RENDER SUMMARY
